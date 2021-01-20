@@ -7,6 +7,17 @@
 - [Releases](https://github.com/tedelm/RogueFlight/releases)
 - [Firmware](https://github.com/tedelm/RogueFlight/tree/main/Releases)
 
+## RogueFlight 0.0.1003
+
+- Added support for MAX watt usage (simple)
+    - Note... This is going to be migrated to a feature and function/pid loop with OSD integration
+
+Sets max watt usage to 1800
+
+```
+SET watt_mode_watt = 1800
+```
+
 
 ## RogueFlight 0.0.1002
 
@@ -57,3 +68,11 @@ SET tpaFactor_D_80 = 100
 SET tpaFactor_D_90 = 100
 SET tpaFactor_D_100 = 100
 ```
+
+
+# Todo
+
+- [ ] watt_mode_watt
+    - [ ] Move "watt_mode_watt" to Feature
+    - [ ] Move "watt_mode_watt" to PID controller
+    - [ ] Add support for OSD element

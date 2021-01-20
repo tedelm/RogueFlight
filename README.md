@@ -3,12 +3,13 @@
 ## Funfact, its based on Betaflight 4.2.6
 
 # Releases
+[Firmware](https://github.com/tedelm/RogueFlight/tree/main/Releases)
+
 
 ## RogueFlight 0.0.1002
 - Added D-term PID scaling
 
 D-term should now be x10 times what you are used to.
-
 
 ## RogueFlight 0.0.1001
 - Added support for individual TPA

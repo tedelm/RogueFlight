@@ -3,7 +3,9 @@
 ## Funfact, its based on Betaflight 4.2.6
 
 # Releases
-[Firmware](https://github.com/tedelm/RogueFlight/tree/main/Releases)
+
+- [Releases](https://github.com/tedelm/RogueFlight/releases)
+- [Firmware](https://github.com/tedelm/RogueFlight/tree/main/Releases)
 
 
 ## RogueFlight 0.0.1002

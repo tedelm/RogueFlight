@@ -8,11 +8,16 @@
 
 ## RogueFlight 0.0.1002
 - Added D-term PID scaling
-
-D-term should now be x10 times what you are used to.
+</br>
+D-term should now be x10 times what you are used to.</br>
+</br>
+If your ROLL PIDs were [55, 45, 30], they should now be [55,45,300]</br>
 
 ## RogueFlight 0.0.1001
 - Added support for individual TPA
+    - Based on throttle percentage
+    - Can scale from 10% to 1000%
+    - "tpaFactor_P_10 = 90" will multiply your P-term by 0.90 at 10% throttle
 
 ```
 SET tpaFactor_P_10 = 100

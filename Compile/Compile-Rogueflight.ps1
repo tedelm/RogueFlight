@@ -19,11 +19,13 @@ $FlightControllers = @(
 #"BETAFLIGHTF4"
 #"HAKRCF405"
 #"HAKRCF411"
-"REVOLT"
-"MATEKF405"
-"BETAFLIGHTF4"
-"MATEKF411"
+#"REVOLT"
+#"MATEKF405"
+#"BETAFLIGHTF4"
+#"MATEKF411"
 "MAMBAF411"
+#"FURYF4OSD"
+#"MAMBAF722"
 )
 
 #No need to edit anything beyond this point
@@ -36,7 +38,7 @@ Foreach($FlightController in $FlightControllers){
 	#Start container and compile
 	docker run -e $($target) --rm -ti -v $workdir betaflight/betaflight-build
 	#Stop the container
-	docker stop practical_hopper
+	#docker stop $(docker ps -a -q)
 	Write-host "######## $FlightController : Done! " -ForegroundColor Green -BackgroundColor Black
 
 	Start-Sleep -Seconds 5

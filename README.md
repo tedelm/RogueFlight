@@ -4,7 +4,13 @@
 
 # Releases
 
-## RogueFlight 0.0.1
+## RogueFlight 0.0.1002
+- Added D-term PID scaling
+
+D-term should now be x10 times what you are used to.
+
+
+## RogueFlight 0.0.1001
 - Added support for individual TPA
 
 ```

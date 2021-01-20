@@ -7,7 +7,7 @@
 ## RogueFlight 0.0.1
 - Added support for individual TPA
 
-´´´
+```
 SET tpaFactor_P_10 = 100
 SET tpaFactor_P_20 = 100
 SET tpaFactor_P_30 = 100
@@ -38,4 +38,4 @@ SET tpaFactor_D_70 = 100
 SET tpaFactor_D_80 = 100
 SET tpaFactor_D_90 = 100
 SET tpaFactor_D_100 = 100
-´´´
+```

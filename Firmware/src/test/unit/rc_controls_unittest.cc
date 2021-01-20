@@ -291,7 +291,8 @@ protected:
             .tpaFactor_D_70 = 0,
             .tpaFactor_D_80 = 0,
             .tpaFactor_D_90 = 0,
-            .tpaFactor_D_100 = 0            
+            .tpaFactor_D_100 = 0,
+            .watt_mode_watt = 0            
     };
 
     channelRange_t fullRange = {
@@ -349,6 +350,7 @@ protected:
         controlRateConfig.tpaFactor_D_80 = 0;
         controlRateConfig.tpaFactor_D_90 = 0;
         controlRateConfig.tpaFactor_D_100 = 0;        
+        controlRateConfig.watt_mode_watt = 0;
 
         PG_RESET(adjustmentRanges);
         adjustmentRangesIndex = 0;
@@ -457,7 +459,8 @@ TEST_F(RcControlsAdjustmentsTest, processRcAdjustmentsWithRcRateFunctionSwitchUp
             .tpaFactor_D_70 = 0,
             .tpaFactor_D_80 = 0,
             .tpaFactor_D_90 = 0,
-            .tpaFactor_D_100 = 0            
+            .tpaFactor_D_100 = 0,
+            .watt_mode_watt = 0          
     };
 
     // and

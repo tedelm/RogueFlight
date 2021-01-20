@@ -1310,7 +1310,8 @@ static bool blackboxWriteSysinfo(void)
         BLACKBOX_PRINT_HEADER_LINE("tpaFactor_D_70", "%d",                  currentControlRateProfile->tpaFactor_D_70);
         BLACKBOX_PRINT_HEADER_LINE("tpaFactor_D_80", "%d",                  currentControlRateProfile->tpaFactor_D_80);
         BLACKBOX_PRINT_HEADER_LINE("tpaFactor_D_90", "%d",                  currentControlRateProfile->tpaFactor_D_90);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_D_100", "%d",                  currentControlRateProfile->tpaFactor_D_100);         
+        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_D_100", "%d",                  currentControlRateProfile->tpaFactor_D_100);
+        BLACKBOX_PRINT_HEADER_LINE("watt_mode_watt", "%d",                  currentControlRateProfile->watt_mode_watt);
         BLACKBOX_PRINT_HEADER_LINE("rc_rates", "%d,%d,%d",                  currentControlRateProfile->rcRates[ROLL],
                                                                             currentControlRateProfile->rcRates[PITCH],
                                                                             currentControlRateProfile->rcRates[YAW]);

@@ -84,7 +84,8 @@ typedef struct controlRateConfig_s {
     uint16_t tpaFactor_D_70;
     uint16_t tpaFactor_D_80;
     uint16_t tpaFactor_D_90;
-    uint16_t tpaFactor_D_100;    
+    uint16_t tpaFactor_D_100;
+    uint16_t watt_mode_watt;
     uint8_t throttle_limit_type;            // Sets the throttle limiting type - off, scale or clip
     uint8_t throttle_limit_percent;         // Sets the maximum pilot commanded throttle limit
     uint16_t rate_limit[3];                 // Sets the maximum rate for the axes

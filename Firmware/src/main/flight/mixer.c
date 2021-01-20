@@ -64,6 +64,7 @@
 
 #include "sensors/battery.h"
 #include "sensors/gyro.h"
+#include "sensors/current.h"
 
 PG_REGISTER_WITH_RESET_TEMPLATE(mixerConfig_t, mixerConfig, PG_MIXER_CONFIG, 0);
 
@@ -947,6 +948,30 @@ FAST_CODE_NOINLINE void mixTable(timeUs_t currentTimeUs, uint8_t vbatPidCompensa
     float airmodeThrottleChange = 0;
 #endif
     mixerThrottle = throttle;
+
+#ifdef USE_WATT_MODE
+
+    const float watt_mode_w = currentControlRateProfile->watt_mode_watt;
+    const float LipoVolt = getBatteryVoltage();
+    const float currentLipoAmperage = getAmperageLatest();
+    //Unfiltered: const float LipoVolt = getBatteryVoltageLatest();
+    const float MachineUsageWatt = LipoVolt * currentLipoAmperage;
+
+    //If Watt Usage greater than
+    if (MachineUsageWatt > watt_mode_w) {
+
+        mixerThrottle = throttle - 0.15f;
+    }
+    if (MachineUsageWatt > (watt_mode_w - 50)) {
+
+        mixerThrottle = throttle - 0.10f;
+    }    
+     if (MachineUsageWatt > (watt_mode_w - 100)) {
+
+        mixerThrottle = throttle - 0.05f;
+    }    
+
+#endif
 
     motorMixRange = motorMixMax - motorMixMin;
     if (motorMixRange > 1.0f) {

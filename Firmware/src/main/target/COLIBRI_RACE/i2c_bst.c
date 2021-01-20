@@ -355,7 +355,8 @@ static bool bstSlaveProcessFeedbackCommand(uint8_t bstRequest)
             bstWrite16(currentControlRateProfile->tpaFactor_D_70);
             bstWrite16(currentControlRateProfile->tpaFactor_D_80);
             bstWrite16(currentControlRateProfile->tpaFactor_D_90);
-            bstWrite16(currentControlRateProfile->tpaFactor_D_100);             
+            bstWrite16(currentControlRateProfile->tpaFactor_D_100);
+            bstWrite16(currentControlRateProfile->watt_mode_watt);           
             bstWrite8(currentControlRateProfile->rcExpo[FD_YAW]);
             bstWrite8(currentControlRateProfile->rcRates[FD_YAW]);
             break;
@@ -524,6 +525,7 @@ static bool bstSlaveProcessWriteCommand(uint8_t bstWriteCommand)
                 currentControlRateProfile->tpaFactor_D_80 = bstRead16();
                 currentControlRateProfile->tpaFactor_D_90 = bstRead16();
                 currentControlRateProfile->tpaFactor_D_100 = bstRead16();                
+                currentControlRateProfile->watt_mode_watt = bstRead16(); 
 
                 if (bstReadDataSize() >= 11) {
                     currentControlRateProfile->rcExpo[FD_YAW] = bstRead8();

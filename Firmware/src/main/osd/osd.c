@@ -172,7 +172,6 @@ const osd_stats_e osdStatsDisplayOrder[OSD_STAT_COUNT] = {
     OSD_STAT_MIN_RSSI,
     OSD_STAT_MAX_CURRENT,
     OSD_STAT_USED_MAH,
-    OSD_STAT_USED_WATT,
     OSD_STAT_BLACKBOX,
     OSD_STAT_BLACKBOX_NUMBER,
     OSD_STAT_MAX_G_FORCE,
@@ -285,7 +284,6 @@ void pgResetFn_osdConfig(osdConfig_t *osdConfig)
     osdStatSetState(OSD_STAT_MIN_RSSI, true);
     osdStatSetState(OSD_STAT_MAX_CURRENT, true);
     osdStatSetState(OSD_STAT_USED_MAH, true);
-    osdStatSetState(OSD_STAT_USED_WATT, true);
     osdStatSetState(OSD_STAT_BLACKBOX, true);
     osdStatSetState(OSD_STAT_BLACKBOX_NUMBER, true);
     osdStatSetState(OSD_STAT_TIMER_2, true);

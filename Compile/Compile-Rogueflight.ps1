@@ -20,14 +20,14 @@ $FlightControllers = @(
 #"HAKRCF405"
 #"HAKRCF411"
 #"REVOLT"
-#"MATEKF405"
+"MATEKF405"
 #"BETAFLIGHTF4"
 #"MATEKF411"
 #"MAMBAF411"
 #"FURYF4OSD"
 #"MAMBAF722"
 #"JHEF411"
-"REVOLTOSD"
+#"REVOLTOSD"
 )
 
 #No need to edit anything beyond this point

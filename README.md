@@ -76,3 +76,12 @@ SET tpaFactor_D_100 = 100
     - [ ] Move "watt_mode_watt" to Feature
     - [ ] Move "watt_mode_watt" to PID controller
     - [ ] Add support for OSD element
+- [ ] zero_delay
+    - [ ] feature that disables everything that adds latency
+
+
+
+
+
+
+

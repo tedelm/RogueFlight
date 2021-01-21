@@ -7,6 +7,37 @@
 - [Releases](https://github.com/tedelm/RogueFlight/releases)
 - [Firmware](https://github.com/tedelm/RogueFlight/tree/main/Releases)
 
+
+## RogueFlight 0.0.1033
+
+- Added support for max watt usage based on current Volt and kwad max Amp
+- Added as FEATURE
+- Added as AUX-mode, can be enabled using AUX-switch
+
+- Variables:
+    - watt_mode_watt (0-10000)
+        - Default: 1800, Target max watt allowed to be used
+    - watt_mode_maxAmp (1-500)
+        - Default: 135, the max Amps your kwad draw att 100% throttle
+    - watt_mode_comp (0-25)
+        - Default: 10, Magic sauce, limits the throttle even more
+
+
+```
+SET watt_mode_watt = 1800
+SET watt_mode_maxAmp = 135
+SET watt_mode_comp = 10
+
+
+```
+
+Enable feature
+```
+FEATURE WATTMODE
+
+```
+
+
 ## RogueFlight 0.0.1003
 
 - Added support for MAX watt usage (simple)

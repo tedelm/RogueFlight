@@ -950,27 +950,48 @@ FAST_CODE_NOINLINE void mixTable(timeUs_t currentTimeUs, uint8_t vbatPidCompensa
     mixerThrottle = throttle;
 
 #ifdef USE_WATT_MODE
+    if (featureIsEnabled(FEATURE_WATTMODE) || IS_RC_MODE_ACTIVE(BOXWATTMODE)) {
 
-    const float watt_mode_w = currentControlRateProfile->watt_mode_watt;
-    const float LipoVolt = getBatteryVoltage();
-    const float currentLipoAmperage = getAmperageLatest();
-    //Unfiltered: const float LipoVolt = getBatteryVoltageLatest();
-    const float MachineUsageWatt = LipoVolt * currentLipoAmperage;
+        float watt_mode_throttleLimitFactor;
+        float watt_mode_watt_LastUsage;
+        const float watt_mode_maxRC = 2000;
+        const float watt_mode_watt = currentControlRateProfile->watt_mode_watt;
+        const float watt_mode_comp = currentControlRateProfile->watt_mode_comp;
+        const float watt_mode_maxAmp = currentControlRateProfile->watt_mode_maxAmp;
+        const float LipoVolt = getBatteryVoltage();
+        const float currentLipoAmperage = getAmperageLatest();
+        //Unfiltered: const float LipoVolt = getBatteryVoltageLatest();
+        const float watt_mode_watt_usage = LipoVolt * currentLipoAmperage;
+        const float watt_mode_maxAvailableWatt = watt_mode_maxAmp * LipoVolt;
 
-    //If Watt Usage greater than
-    if (MachineUsageWatt > watt_mode_w) {
+        //3400 / 2000 = 1.7
+        const float watt_mode_dynamiclimiter = watt_mode_maxAvailableWatt / watt_mode_maxRC;
+        //1800 / 2000 = 0.9
+        const float watt_mode_staticlimiter = watt_mode_watt / watt_mode_maxRC;
 
-        mixerThrottle = throttle - 0.15f;
+        //rcData[THROTTLE] ... ~1000->2000;
+
+        //If Watt Usage greater than
+        if (watt_mode_watt_usage > watt_mode_watt) {
+            //(1.0 - ((1.7 * 0.9) - 1,=0.53) = 0.47
+            watt_mode_throttleLimitFactor = 1.0f - ((watt_mode_dynamiclimiter * watt_mode_staticlimiter) - 1.0f);
+
+            if(watt_mode_watt_usage > watt_mode_watt_LastUsage){
+                watt_mode_throttleLimitFactor += watt_mode_comp / 100.0f;
+            }
+        }
+        //Using less then allowed, zero the limitfactor
+        if (watt_mode_watt_usage < watt_mode_watt) {
+          watt_mode_throttleLimitFactor = 0.0f;
+        }
+        //Sanity check
+        if(watt_mode_throttleLimitFactor > 1.0f){
+            watt_mode_throttleLimitFactor = 1.0f;
+        }
+        
+        mixerThrottle = throttle - watt_mode_throttleLimitFactor;
+        watt_mode_watt_LastUsage = watt_mode_watt_usage;
     }
-    if (MachineUsageWatt > (watt_mode_w - 50)) {
-
-        mixerThrottle = throttle - 0.10f;
-    }    
-     if (MachineUsageWatt > (watt_mode_w - 100)) {
-
-        mixerThrottle = throttle - 0.05f;
-    }    
-
 #endif
 
     motorMixRange = motorMixMax - motorMixMin;

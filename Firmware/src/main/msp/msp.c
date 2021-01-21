@@ -1259,6 +1259,8 @@ static bool mspProcessOutCommand(int16_t cmdMSP, sbuf_t *dst)
         sbufWriteU16(dst, currentControlRateProfile->tpaFactor_D_90);
         sbufWriteU16(dst, currentControlRateProfile->tpaFactor_D_100);
         sbufWriteU16(dst, currentControlRateProfile->watt_mode_watt);    
+        sbufWriteU16(dst, currentControlRateProfile->watt_mode_maxAmp);
+        sbufWriteU16(dst, currentControlRateProfile->watt_mode_comp);
         sbufWriteU8(dst, currentControlRateProfile->rcExpo[FD_YAW]);
         sbufWriteU8(dst, currentControlRateProfile->rcRates[FD_YAW]);
         sbufWriteU8(dst, currentControlRateProfile->rcRates[FD_PITCH]);
@@ -2313,6 +2315,8 @@ static mspResult_e mspProcessInCommand(mspDescriptor_t srcDesc, int16_t cmdMSP, 
             currentControlRateProfile->tpaFactor_D_90 = sbufReadU16(src);
             currentControlRateProfile->tpaFactor_D_100 = sbufReadU16(src);            
             currentControlRateProfile->watt_mode_watt = sbufReadU16(src);
+            currentControlRateProfile->watt_mode_maxAmp = sbufReadU16(src);
+            currentControlRateProfile->watt_mode_comp = sbufReadU16(src);
 
             if (sbufBytesRemaining(src) >= 1) {
                 currentControlRateProfile->rcExpo[FD_YAW] = sbufReadU8(src);

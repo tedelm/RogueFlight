@@ -85,6 +85,7 @@ static const box_t boxes[CHECKBOX_ITEM_COUNT] = {
     { BOXFLIPOVERAFTERCRASH, "FLIP OVER AFTER CRASH", 35 },
     { BOXPREARM, "PREARM", 36 },
     { BOXBEEPGPSCOUNT, "BEEP GPS SATELLITE COUNT", 37 },
+    { BOXWATTMODE, "WATT MODE", 38 },
 //    { BOX3DONASWITCH, "3D ON A SWITCH", 38 }, (removed)
     { BOXVTXPITMODE, "VTX PIT MODE", 39 },
     { BOXUSER1, "USER1", 40 },
@@ -185,6 +186,10 @@ void initActiveBoxIds(void)
     BME(BOXPREARM);
     if (!featureIsEnabled(FEATURE_AIRMODE)) {
         BME(BOXAIRMODE);
+    }
+
+    if (!featureIsEnabled(FEATURE_WATTMODE)){
+        BME(BOXWATTMODE);
     }
 
     bool acceleratorGainsEnabled = false;

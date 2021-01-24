@@ -7,6 +7,9 @@ Use this to create .hex files from Betaflight Code.
 
 Created by: Ted Elmenheim, 2021-01-18
 
+
+
+
 #>
 
 #Clone/Download the RogueFlight repo you want.
@@ -17,29 +20,29 @@ $workdir = "C:\GITHUB\RogueFlight\RogueFlight\Firmware" #Path to your betaflight
 $FlightControllers = @(
 #Add one Flightcontroller per line
 #"BETAFLIGHTF4"
-#"HAKRCF405"
+"HAKRCF405"
 #"HAKRCF411"
 #"REVOLT"
-#"MATEKF405"
-#"BETAFLIGHTF4"
-#"MATEKF411"
-"MAMBAF411"	
-#"FURYF4OSD"
-#"MAMBAF722"
+##"MATEKF405"
+##"BETAFLIGHTF4"
+##"MATEKF411"
+##"MAMBAF411"	
+##"FURYF4OSD"
+##"MAMBAF722"
 #"JHEF411"
-#"REVOLTOSD"
-#"OMNIBUSF4SD"
-#"OMNIBUSF4"
-#"AIRBOTF4SD"
-#"AIRBOTF7"
-#"KAKUTEF4"
-#"KAKUTEF4V2"
-#"KAKUTEF7"
-#"KAKUTEF7MINI"
+##"REVOLTOSD"
+##"OMNIBUSF4SD"
+##"OMNIBUSF4"
+##"AIRBOTF4SD"
+##"AIRBOTF7"
+##"KAKUTEF4"
+##"KAKUTEF4V2"
+##"KAKUTEF7"
+##"KAKUTEF7MINI"
 #"KAKUTEF7V2"
-#"KISSCC"
+#"KISSCC" too big
 #"KISSFC" too big
-#"KISSFCV2F7"
+##"KISSFCV2F7"
 )
 
 #No need to edit anything beyond this point

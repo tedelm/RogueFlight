@@ -579,7 +579,7 @@ static bool mspCommonProcessOutCommand(int16_t cmdMSP, sbuf_t *dst, mspPostProce
     case MSP_FC_VERSION:
         sbufWriteU8(dst, FC_VERSION_MAJOR);
         sbufWriteU8(dst, FC_VERSION_MINOR);
-        sbufWriteU8(dst, FC_VERSION_PATCH_LEVEL);
+        sbufWriteU16(dst, FC_VERSION_PATCH_LEVEL);
         break;
 
     case MSP_BOARD_INFO:

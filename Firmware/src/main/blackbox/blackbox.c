@@ -1281,37 +1281,6 @@ static bool blackboxWriteSysinfo(void)
         BLACKBOX_PRINT_HEADER_LINE("thr_expo", "%d",                        currentControlRateProfile->thrExpo8);
         BLACKBOX_PRINT_HEADER_LINE("tpa_rate", "%d",                        currentControlRateProfile->dynThrPID);
         BLACKBOX_PRINT_HEADER_LINE("tpa_breakpoint", "%d",                  currentControlRateProfile->tpa_breakpoint);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_P_10", "%d",                  currentControlRateProfile->tpaFactor_P_10);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_P_20", "%d",                  currentControlRateProfile->tpaFactor_P_20);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_P_30", "%d",                  currentControlRateProfile->tpaFactor_P_30);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_P_40", "%d",                  currentControlRateProfile->tpaFactor_P_40);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_P_50", "%d",                  currentControlRateProfile->tpaFactor_P_50);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_P_60", "%d",                  currentControlRateProfile->tpaFactor_P_60);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_P_70", "%d",                  currentControlRateProfile->tpaFactor_P_70);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_P_80", "%d",                  currentControlRateProfile->tpaFactor_P_80);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_P_90", "%d",                  currentControlRateProfile->tpaFactor_P_90);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_P_100", "%d",                  currentControlRateProfile->tpaFactor_P_100);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_I_10", "%d",                  currentControlRateProfile->tpaFactor_I_10);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_I_20", "%d",                  currentControlRateProfile->tpaFactor_I_20);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_I_30", "%d",                  currentControlRateProfile->tpaFactor_I_30);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_I_40", "%d",                  currentControlRateProfile->tpaFactor_I_40);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_I_50", "%d",                  currentControlRateProfile->tpaFactor_I_50);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_I_60", "%d",                  currentControlRateProfile->tpaFactor_I_60);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_I_70", "%d",                  currentControlRateProfile->tpaFactor_I_70);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_I_80", "%d",                  currentControlRateProfile->tpaFactor_I_80);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_I_90", "%d",                  currentControlRateProfile->tpaFactor_I_90);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_I_100", "%d",                  currentControlRateProfile->tpaFactor_I_100);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_D_10", "%d",                  currentControlRateProfile->tpaFactor_D_10);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_D_20", "%d",                  currentControlRateProfile->tpaFactor_D_20);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_D_30", "%d",                  currentControlRateProfile->tpaFactor_D_30);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_D_40", "%d",                  currentControlRateProfile->tpaFactor_D_40);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_D_50", "%d",                  currentControlRateProfile->tpaFactor_D_50);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_D_60", "%d",                  currentControlRateProfile->tpaFactor_D_60);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_D_70", "%d",                  currentControlRateProfile->tpaFactor_D_70);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_D_80", "%d",                  currentControlRateProfile->tpaFactor_D_80);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_D_90", "%d",                  currentControlRateProfile->tpaFactor_D_90);
-        BLACKBOX_PRINT_HEADER_LINE("tpaFactor_D_100", "%d",                  currentControlRateProfile->tpaFactor_D_100);
-        BLACKBOX_PRINT_HEADER_LINE("watt_mode_watt", "%d",                  currentControlRateProfile->watt_mode_watt);
         BLACKBOX_PRINT_HEADER_LINE("rc_rates", "%d,%d,%d",                  currentControlRateProfile->rcRates[ROLL],
                                                                             currentControlRateProfile->rcRates[PITCH],
                                                                             currentControlRateProfile->rcRates[YAW]);

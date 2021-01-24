@@ -8,6 +8,12 @@
 - [Firmware](https://github.com/tedelm/RogueFlight/tree/main/Releases)
 
 
+
+## RogueFlight_0.0.1034
+
+- Fixed issue with TPA and PID-loop
+- Added I-term windup code back with TPA added
+
 ## RogueFlight 0.0.1033
 
 - Added support for max watt usage based on current Volt and kwad max Amp

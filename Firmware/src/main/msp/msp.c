@@ -1227,7 +1227,24 @@ static bool mspProcessOutCommand(int16_t cmdMSP, sbuf_t *dst)
         sbufWriteU8(dst, currentControlRateProfile->thrMid8);
         sbufWriteU8(dst, currentControlRateProfile->thrExpo8);
         sbufWriteU16(dst, currentControlRateProfile->tpa_breakpoint);
-        sbufWriteU16(dst, currentControlRateProfile->tpa_breakpoint);
+        sbufWriteU8(dst, currentControlRateProfile->rcExpo[FD_YAW]);
+        sbufWriteU8(dst, currentControlRateProfile->rcRates[FD_YAW]);
+        sbufWriteU8(dst, currentControlRateProfile->rcRates[FD_PITCH]);
+        sbufWriteU8(dst, currentControlRateProfile->rcExpo[FD_PITCH]);
+
+        // added in 1.41
+        sbufWriteU8(dst, currentControlRateProfile->throttle_limit_type);
+        sbufWriteU8(dst, currentControlRateProfile->throttle_limit_percent);
+
+        // added in 1.42
+        sbufWriteU16(dst, currentControlRateProfile->rate_limit[FD_ROLL]);
+        sbufWriteU16(dst, currentControlRateProfile->rate_limit[FD_PITCH]);
+        sbufWriteU16(dst, currentControlRateProfile->rate_limit[FD_YAW]);
+
+        // added in 1.43
+        sbufWriteU8(dst, currentControlRateProfile->rates_type);
+
+        // Added in RogueFlight 0.0.1033
         sbufWriteU16(dst, currentControlRateProfile->tpaFactor_P_10);
         sbufWriteU16(dst, currentControlRateProfile->tpaFactor_P_20);
         sbufWriteU16(dst, currentControlRateProfile->tpaFactor_P_30);
@@ -1260,23 +1277,7 @@ static bool mspProcessOutCommand(int16_t cmdMSP, sbuf_t *dst)
         sbufWriteU16(dst, currentControlRateProfile->tpaFactor_D_100);
         sbufWriteU16(dst, currentControlRateProfile->watt_mode_watt);    
         sbufWriteU16(dst, currentControlRateProfile->watt_mode_maxAmp);
-        sbufWriteU16(dst, currentControlRateProfile->watt_mode_comp);
-        sbufWriteU8(dst, currentControlRateProfile->rcExpo[FD_YAW]);
-        sbufWriteU8(dst, currentControlRateProfile->rcRates[FD_YAW]);
-        sbufWriteU8(dst, currentControlRateProfile->rcRates[FD_PITCH]);
-        sbufWriteU8(dst, currentControlRateProfile->rcExpo[FD_PITCH]);
-
-        // added in 1.41
-        sbufWriteU8(dst, currentControlRateProfile->throttle_limit_type);
-        sbufWriteU8(dst, currentControlRateProfile->throttle_limit_percent);
-
-        // added in 1.42
-        sbufWriteU16(dst, currentControlRateProfile->rate_limit[FD_ROLL]);
-        sbufWriteU16(dst, currentControlRateProfile->rate_limit[FD_PITCH]);
-        sbufWriteU16(dst, currentControlRateProfile->rate_limit[FD_YAW]);
-
-        // added in 1.43
-        sbufWriteU8(dst, currentControlRateProfile->rates_type);
+        sbufWriteU16(dst, currentControlRateProfile->watt_mode_comp);        
 
         break;
 
@@ -2284,39 +2285,6 @@ static mspResult_e mspProcessInCommand(mspDescriptor_t srcDesc, int16_t cmdMSP, 
             currentControlRateProfile->thrMid8 = sbufReadU8(src);
             currentControlRateProfile->thrExpo8 = sbufReadU8(src);
             currentControlRateProfile->tpa_breakpoint = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_P_10 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_P_20 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_P_30 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_P_40 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_P_50 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_P_60 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_P_70 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_P_80 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_P_90 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_P_100 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_I_10 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_I_20 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_I_30 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_I_40 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_I_50 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_I_60 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_I_70 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_I_80 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_I_90 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_I_100 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_D_10 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_D_20 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_D_30 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_D_40 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_D_50 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_D_60 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_D_70 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_D_80 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_D_90 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_D_100 = sbufReadU16(src);            
-            currentControlRateProfile->watt_mode_watt = sbufReadU16(src);
-            currentControlRateProfile->watt_mode_maxAmp = sbufReadU16(src);
-            currentControlRateProfile->watt_mode_comp = sbufReadU16(src);
 
             if (sbufBytesRemaining(src) >= 1) {
                 currentControlRateProfile->rcExpo[FD_YAW] = sbufReadU8(src);
@@ -2351,6 +2319,41 @@ static mspResult_e mspProcessInCommand(mspDescriptor_t srcDesc, int16_t cmdMSP, 
             if (sbufBytesRemaining(src) >= 1) {
                 currentControlRateProfile->rates_type = sbufReadU8(src);
             }
+
+            // Added in RogueFlight 0.0.1033
+            currentControlRateProfile->tpaFactor_P_10 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_P_20 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_P_30 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_P_40 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_P_50 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_P_60 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_P_70 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_P_80 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_P_90 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_P_100 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_I_10 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_I_20 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_I_30 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_I_40 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_I_50 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_I_60 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_I_70 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_I_80 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_I_90 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_I_100 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_D_10 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_D_20 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_D_30 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_D_40 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_D_50 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_D_60 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_D_70 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_D_80 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_D_90 = sbufReadU16(src);
+            currentControlRateProfile->tpaFactor_D_100 = sbufReadU16(src);            
+            currentControlRateProfile->watt_mode_watt = sbufReadU16(src);
+            currentControlRateProfile->watt_mode_maxAmp = sbufReadU16(src);
+            currentControlRateProfile->watt_mode_comp = sbufReadU16(src);            
 
             initRcProcessing();
         } else {

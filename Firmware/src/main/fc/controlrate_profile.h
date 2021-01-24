@@ -54,7 +54,12 @@ typedef struct controlRateConfig_s {
     uint8_t rcExpo[3];
     uint8_t rates[3];
     uint8_t dynThrPID;
-    uint16_t tpa_breakpoint;                // Breakpoint where TPA is activated
+    uint16_t tpa_breakpoint;                // Breakpoint where TPA is activated     
+    uint8_t throttle_limit_type;            // Sets the throttle limiting type - off, scale or clip
+    uint8_t throttle_limit_percent;         // Sets the maximum pilot commanded throttle limit
+    uint16_t rate_limit[3];                 // Sets the maximum rate for the axes
+    uint8_t tpaMode;                        // Controls which PID terms TPA effects
+    char profileName[MAX_RATE_PROFILE_NAME_LENGTH + 1]; // Descriptive name for rate profile
     uint16_t tpaFactor_P_10;
     uint16_t tpaFactor_P_20;
     uint16_t tpaFactor_P_30;
@@ -87,12 +92,8 @@ typedef struct controlRateConfig_s {
     uint16_t tpaFactor_D_100;
     uint16_t watt_mode_watt;
     uint16_t watt_mode_maxAmp;
-    uint16_t watt_mode_comp;        
-    uint8_t throttle_limit_type;            // Sets the throttle limiting type - off, scale or clip
-    uint8_t throttle_limit_percent;         // Sets the maximum pilot commanded throttle limit
-    uint16_t rate_limit[3];                 // Sets the maximum rate for the axes
-    uint8_t tpaMode;                        // Controls which PID terms TPA effects
-    char profileName[MAX_RATE_PROFILE_NAME_LENGTH + 1]; // Descriptive name for rate profile
+    uint16_t watt_mode_comp;    
+
 } controlRateConfig_t;
 
 PG_DECLARE_ARRAY(controlRateConfig_t, CONTROL_RATE_PROFILE_COUNT, controlRateProfiles);

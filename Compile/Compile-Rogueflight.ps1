@@ -11,6 +11,7 @@ Created by: Ted Elmenheim, 2021-01-18
 
 #Clone/Download the RogueFlight repo you want.
 $workdir = "C:\GITHUB\RogueFlight\RogueFlight\Firmware" #Path to your betaflight repo
+#$workdir = "C:\GITHUB\betaflight-4.2.6" #Path to your betaflight repo
 
 #Add/remove the Flightcontrollers you need
 $FlightControllers = @(
@@ -22,7 +23,7 @@ $FlightControllers = @(
 #"MATEKF405"
 #"BETAFLIGHTF4"
 #"MATEKF411"
-#"MAMBAF411"	
+"MAMBAF411"	
 #"FURYF4OSD"
 #"MAMBAF722"
 #"JHEF411"

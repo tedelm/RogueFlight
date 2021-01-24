@@ -231,8 +231,8 @@ void resetPidProfile(pidProfile_t *pidProfile)
         .vbat_sag_compensation = 0,
     );
 #ifndef USE_D_MIN
-    pidProfile->pid[PID_ROLL].D = 300;
-    pidProfile->pid[PID_PITCH].D = 320;
+    pidProfile->pid[PID_ROLL].D = 30;
+    pidProfile->pid[PID_PITCH].D = 32;
 #endif
 }
 
@@ -628,7 +628,8 @@ void pidInitConfig(const pidProfile_t *pidProfile)
         //DTERM_SCALE = 0.000529f, 
         //0.000529 * (450/10) = 0,023805
         //0.000529 * 45 = 0,023805
-        pidCoefficient[axis].Kd = DTERM_SCALE * (pidProfile->pid[axis].D / 10.0f);
+        //pidCoefficient[axis].Kd = DTERM_SCALE * (pidProfile->pid[axis].D / 10.0f);
+        pidCoefficient[axis].Kd = DTERM_SCALE * (pidProfile->pid[axis].D);
         pidCoefficient[axis].Kf = FEEDFORWARD_SCALE * (pidProfile->pid[axis].F / 100.0f);
     }
 #ifdef USE_INTEGRATED_YAW_CONTROL
@@ -1359,7 +1360,7 @@ void FAST_CODE pidController(const pidProfile_t *pidProfile, timeUs_t currentTim
 #ifdef USE_RPM_FILTER
         gyroRateDterm[axis] = rpmFilterDterm(axis,gyroRateDterm[axis]);
 #endif
-        //gyroRateDterm[axis] = dtermNotchApplyFn((filter_t *) &dtermNotch[axis], gyroRateDterm[axis]);
+        gyroRateDterm[axis] = dtermNotchApplyFn((filter_t *) &dtermNotch[axis], gyroRateDterm[axis]);
         gyroRateDterm[axis] = dtermLowpassApplyFn((filter_t *) &dtermLowpass[axis], gyroRateDterm[axis]);
         gyroRateDterm[axis] = dtermLowpass2ApplyFn((filter_t *) &dtermLowpass2[axis], gyroRateDterm[axis]);
     }
@@ -1482,8 +1483,10 @@ void FAST_CODE pidController(const pidProfile_t *pidProfile, timeUs_t currentTim
         }
 
         //I-term
-        pidData[axis].I = pidCoefficient[axis].Ki * itermErrorRate * tpaFactor_I;
+        //pidData[axis].I = pidCoefficient[axis].Ki * itermErrorRate * tpaFactor_I;
         //pidData[axis].I = constrainf(previousIterm + (Ki * axisDynCi + agGain) * itermErrorRate, -itermLimit, itermLimit);
+        pidData[axis].I = constrainf(previousIterm + (Ki * axisDynCi + agGain) * itermErrorRate, -itermLimit, itermLimit);
+        pidData[axis].I = pidData[axis].I * tpaFactor_I;
 
         // -----calculate pidSetpointDelta
         float pidSetpointDelta = 0;

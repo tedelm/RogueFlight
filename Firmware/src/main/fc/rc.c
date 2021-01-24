@@ -777,74 +777,76 @@ FAST_CODE_NOINLINE void updateRcCommands(void)
     //    throttlePIDAttenuation = prop / 100.0f;
     //}
 
+
+
 int32_t TPA_P = 100;
 int32_t TPA_I = 100;
 int32_t TPA_D = 100;
 
+
     if (rcData[THROTTLE] < 2000) {
-        TPA_P = 100 - currentControlRateProfile->tpaFactor_P_100;
-        TPA_I = 100 - currentControlRateProfile->tpaFactor_I_100;
-        TPA_D = 100 - currentControlRateProfile->tpaFactor_D_100;
+        TPA_P = (uint16_t)currentControlRateProfile->tpaFactor_P_100;
+        TPA_I = (uint16_t)currentControlRateProfile->tpaFactor_I_100;
+        TPA_D = (uint16_t)currentControlRateProfile->tpaFactor_D_100;
     }
     if (rcData[THROTTLE] < 1900) {
-        TPA_P = 100 - currentControlRateProfile->tpaFactor_P_90;
-        TPA_I = 100 - currentControlRateProfile->tpaFactor_I_90;
-        TPA_D = 100 - currentControlRateProfile->tpaFactor_D_90;
+        TPA_P = (uint16_t)currentControlRateProfile->tpaFactor_P_90;
+        TPA_I = (uint16_t)currentControlRateProfile->tpaFactor_I_90;
+        TPA_D = (uint16_t)currentControlRateProfile->tpaFactor_D_90;
 
     }
     if (rcData[THROTTLE] < 1800) {
-        TPA_P = 100 - currentControlRateProfile->tpaFactor_P_80;
-        TPA_I = 100 - currentControlRateProfile->tpaFactor_I_80;
-        TPA_D = 100 - currentControlRateProfile->tpaFactor_D_80;
+        TPA_P = (uint16_t)currentControlRateProfile->tpaFactor_P_80;
+        TPA_I = (uint16_t)currentControlRateProfile->tpaFactor_I_80;
+        TPA_D = (uint16_t)currentControlRateProfile->tpaFactor_D_80;
 
     }
     if (rcData[THROTTLE] < 1700) {
-        TPA_P = 100 - currentControlRateProfile->tpaFactor_P_70;
-        TPA_I = 100 - currentControlRateProfile->tpaFactor_I_70;
-        TPA_D = 100 - currentControlRateProfile->tpaFactor_D_70;
+        TPA_P = (uint16_t)currentControlRateProfile->tpaFactor_P_70;
+        TPA_I = (uint16_t)currentControlRateProfile->tpaFactor_I_70;
+        TPA_D = (uint16_t)currentControlRateProfile->tpaFactor_D_70;
 
     }
     if (rcData[THROTTLE] < 1600) {
-        TPA_P = 100 - currentControlRateProfile->tpaFactor_P_60;
-        TPA_I = 100 - currentControlRateProfile->tpaFactor_I_60;
-        TPA_D = 100 - currentControlRateProfile->tpaFactor_D_60;
+        TPA_P = (uint16_t)currentControlRateProfile->tpaFactor_P_60;
+        TPA_I = (uint16_t)currentControlRateProfile->tpaFactor_I_60;
+        TPA_D = (uint16_t)currentControlRateProfile->tpaFactor_D_60;
 
     }
     if (rcData[THROTTLE] < 1500) {
-        TPA_P = 100 - currentControlRateProfile->tpaFactor_P_50;
-        TPA_I = 100 - currentControlRateProfile->tpaFactor_I_50;
-        TPA_D = 100 - currentControlRateProfile->tpaFactor_D_50;
+        TPA_P = (uint16_t)currentControlRateProfile->tpaFactor_P_50;
+        TPA_I = (uint16_t)currentControlRateProfile->tpaFactor_I_50;
+        TPA_D = (uint16_t)currentControlRateProfile->tpaFactor_D_50;
 
     }
     if (rcData[THROTTLE] < 1400) {
-        TPA_P = 100 - currentControlRateProfile->tpaFactor_P_40;
-        TPA_I = 100 - currentControlRateProfile->tpaFactor_I_40;
-        TPA_D = 100 - currentControlRateProfile->tpaFactor_D_40;
+        TPA_P = (uint16_t)currentControlRateProfile->tpaFactor_P_40;
+        TPA_I = (uint16_t)currentControlRateProfile->tpaFactor_I_40;
+        TPA_D = (uint16_t)currentControlRateProfile->tpaFactor_D_40;
 
     }
     if (rcData[THROTTLE] < 1300) {
-        TPA_P = 100 - currentControlRateProfile->tpaFactor_P_30;
-        TPA_I = 100 - currentControlRateProfile->tpaFactor_I_30;
-        TPA_D = 100 - currentControlRateProfile->tpaFactor_D_30;
+        TPA_P = (uint16_t)currentControlRateProfile->tpaFactor_P_30;
+        TPA_I = (uint16_t)currentControlRateProfile->tpaFactor_I_30;
+        TPA_D = (uint16_t)currentControlRateProfile->tpaFactor_D_30;
 
     }
     if (rcData[THROTTLE] < 1200) {
-        TPA_P = 100 - currentControlRateProfile->tpaFactor_P_20;
-        TPA_I = 100 - currentControlRateProfile->tpaFactor_I_20;
-        TPA_D = 100 - currentControlRateProfile->tpaFactor_D_20;
+        TPA_P = (uint16_t)currentControlRateProfile->tpaFactor_P_20;
+        TPA_I = (uint16_t)currentControlRateProfile->tpaFactor_I_20;
+        TPA_D = (uint16_t)currentControlRateProfile->tpaFactor_D_20;
 
     }
     if (rcData[THROTTLE] < 1100) {
-        TPA_P = 100 - currentControlRateProfile->tpaFactor_P_10;
-        TPA_I = 100 - currentControlRateProfile->tpaFactor_I_10;
-        TPA_D = 100 - currentControlRateProfile->tpaFactor_D_10;
+        TPA_P = (uint16_t)currentControlRateProfile->tpaFactor_P_10;
+        TPA_I = (uint16_t)currentControlRateProfile->tpaFactor_I_10;
+        TPA_D = (uint16_t)currentControlRateProfile->tpaFactor_D_10;
 
     }
 
     throttlePIDAttenuationP = TPA_P / 100.0f;
     throttlePIDAttenuationI = TPA_I / 100.0f;
     throttlePIDAttenuationD = TPA_D / 100.0f;
-
 
 
     for (int axis = 0; axis < 3; axis++) {

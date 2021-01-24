@@ -958,6 +958,11 @@ FAST_CODE_NOINLINE void mixTable(timeUs_t currentTimeUs, uint8_t vbatPidCompensa
         const float watt_mode_watt = currentControlRateProfile->watt_mode_watt;
         const float watt_mode_comp = currentControlRateProfile->watt_mode_comp;
         const float watt_mode_maxAmp = currentControlRateProfile->watt_mode_maxAmp;
+
+        //const float watt_mode_watt = 400;
+        //const float watt_mode_comp = 10;
+        //const float watt_mode_maxAmp = 70;
+
         const float LipoVolt = getBatteryVoltage();
         const float currentLipoAmperage = getAmperageLatest();
         //Unfiltered: const float LipoVolt = getBatteryVoltageLatest();

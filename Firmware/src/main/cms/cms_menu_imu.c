@@ -62,10 +62,10 @@
 //
 // PID
 //
-static uint8_t tmpPidProfileIndex;
-static uint8_t pidProfileIndex;
+static uint16_t tmpPidProfileIndex;
+static uint16_t pidProfileIndex;
 static char pidProfileIndexString[MAX_PROFILE_NAME_LENGTH + 5];
-static uint8_t tempPid[3][3];
+static uint16_t tempPid[3][3];
 static uint16_t tempPidF[3];
 
 static uint8_t tmpRateProfileIndex;
@@ -197,19 +197,19 @@ static const OSD_Entry cmsx_menuPidEntries[] =
 {
     { "-- PID --", OME_Label, NULL, pidProfileIndexString, 0},
 
-    { "ROLL  P", OME_UINT8, NULL, &(OSD_UINT8_t){ &tempPid[PID_ROLL][0],  0, 200, 1 }, 0 },
-    { "ROLL  I", OME_UINT8, NULL, &(OSD_UINT8_t){ &tempPid[PID_ROLL][1],  0, 200, 1 }, 0 },
-    { "ROLL  D", OME_UINT8, NULL, &(OSD_UINT8_t){ &tempPid[PID_ROLL][2],  0, 200, 1 }, 0 },
+    { "ROLL  P", OME_UINT8, NULL, &(OSD_UINT16_t){ &tempPid[PID_ROLL][0],  0, 200, 1 }, 0 },
+    { "ROLL  I", OME_UINT8, NULL, &(OSD_UINT16_t){ &tempPid[PID_ROLL][1],  0, 200, 1 }, 0 },
+    { "ROLL  D", OME_UINT16, NULL, &(OSD_UINT16_t){ &tempPid[PID_ROLL][2],  0, 800, 1 }, 0 },
     { "ROLL  F", OME_UINT16, NULL, &(OSD_UINT16_t){ &tempPidF[PID_ROLL],  0, 2000, 1 }, 0 },
 
-    { "PITCH P", OME_UINT8, NULL, &(OSD_UINT8_t){ &tempPid[PID_PITCH][0], 0, 200, 1 }, 0 },
-    { "PITCH I", OME_UINT8, NULL, &(OSD_UINT8_t){ &tempPid[PID_PITCH][1], 0, 200, 1 }, 0 },
-    { "PITCH D", OME_UINT8, NULL, &(OSD_UINT8_t){ &tempPid[PID_PITCH][2], 0, 200, 1 }, 0 },
+    { "PITCH P", OME_UINT8, NULL, &(OSD_UINT16_t){ &tempPid[PID_PITCH][0], 0, 200, 1 }, 0 },
+    { "PITCH I", OME_UINT8, NULL, &(OSD_UINT16_t){ &tempPid[PID_PITCH][1], 0, 200, 1 }, 0 },
+    { "PITCH D", OME_UINT16, NULL, &(OSD_UINT16_t){ &tempPid[PID_PITCH][2], 0, 800, 1 }, 0 },
     { "PITCH F", OME_UINT16, NULL, &(OSD_UINT16_t){ &tempPidF[PID_PITCH], 0, 2000, 1 }, 0 },
 
-    { "YAW   P", OME_UINT8, NULL, &(OSD_UINT8_t){ &tempPid[PID_YAW][0],   0, 200, 1 }, 0 },
-    { "YAW   I", OME_UINT8, NULL, &(OSD_UINT8_t){ &tempPid[PID_YAW][1],   0, 200, 1 }, 0 },
-    { "YAW   D", OME_UINT8, NULL, &(OSD_UINT8_t){ &tempPid[PID_YAW][2],   0, 200, 1 }, 0 },
+    { "YAW   P", OME_UINT8, NULL, &(OSD_UINT16_t){ &tempPid[PID_YAW][0],   0, 200, 1 }, 0 },
+    { "YAW   I", OME_UINT8, NULL, &(OSD_UINT16_t){ &tempPid[PID_YAW][1],   0, 200, 1 }, 0 },
+    { "YAW   D", OME_UINT16, NULL, &(OSD_UINT16_t){ &tempPid[PID_YAW][2],   0, 800, 1 }, 0 },
     { "YAW   F", OME_UINT16, NULL, &(OSD_UINT16_t){ &tempPidF[PID_YAW],   0, 2000, 1 }, 0 },
 
     { "BACK", OME_Back, NULL, NULL, 0 },
@@ -836,7 +836,7 @@ static const OSD_Entry cmsx_menuImuEntries[] =
 {
     { "-- PROFILE --", OME_Label, NULL, NULL, 0},
 
-    {"PID PROF",  OME_UINT8,   cmsx_profileIndexOnChange,     &(OSD_UINT8_t){ &tmpPidProfileIndex, 1, PID_PROFILE_COUNT, 1},    0},
+    {"PID PROF",  OME_UINT16,   cmsx_profileIndexOnChange,     &(OSD_UINT16_t){ &tmpPidProfileIndex, 1, PID_PROFILE_COUNT, 1},    0},
     {"PID",       OME_Submenu, cmsMenuChange,                 &cmsx_menuPid,                                                 0},
     {"MISC PP",   OME_Submenu, cmsMenuChange,                 &cmsx_menuProfileOther,                                        0},
     {"FILT PP",   OME_Submenu, cmsMenuChange,                 &cmsx_menuFilterPerProfile,                                    0},

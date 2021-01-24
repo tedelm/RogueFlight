@@ -145,10 +145,10 @@ void resetPidProfile(pidProfile_t *pidProfile)
 {
     RESET_CONFIG(pidProfile_t, pidProfile,
         .pid = {
-            [PID_ROLL] =  { 45, 85, 35, 90 },
-            [PID_PITCH] = { 45, 90, 38, 95 },
+            [PID_ROLL] =  { 45, 85, 350, 90 },
+            [PID_PITCH] = { 45, 90, 380, 95 },
             [PID_YAW] =   { 90, 90, 0, 90 },
-            [PID_LEVEL] = { 50, 50, 75, 0 },
+            [PID_LEVEL] = { 50, 50, 0, 0 },
             [PID_MAG] =   { 40, 0, 0, 0 },
         },
         .pidSumLimit = PIDSUM_LIMIT,
@@ -209,9 +209,9 @@ void resetPidProfile(pidProfile_t *pidProfile)
         .use_integrated_yaw = false,
         .integrated_yaw_relax = 200,
         .thrustLinearization = 0,
-        .d_min = { 23, 25, 0 },      // roll, pitch, yaw
-        .d_min_gain = 37,
-        .d_min_advance = 20,
+        .d_min = { 230, 250, 0 },      // roll, pitch, yaw
+        .d_min_gain = 370,
+        .d_min_advance = 200,
         .motor_output_limit = 100,
         .auto_profile_cell_count = AUTO_PROFILE_CELL_COUNT_STAY,
         .transient_throttle_limit = 0,
@@ -231,9 +231,10 @@ void resetPidProfile(pidProfile_t *pidProfile)
         .vbat_sag_compensation = 0,
     );
 #ifndef USE_D_MIN
-    pidProfile->pid[PID_ROLL].D = 30;
-    pidProfile->pid[PID_PITCH].D = 32;
+    pidProfile->pid[PID_ROLL].D = 300;
+    pidProfile->pid[PID_PITCH].D = 320;
 #endif
+
 }
 
 void pgResetFn_pidProfiles(pidProfile_t *pidProfiles)
@@ -624,12 +625,11 @@ void pidInitConfig(const pidProfile_t *pidProfile)
     for (int axis = FD_ROLL; axis <= FD_YAW; axis++) {
         pidCoefficient[axis].Kp = PTERM_SCALE * pidProfile->pid[axis].P;
         pidCoefficient[axis].Ki = ITERM_SCALE * pidProfile->pid[axis].I;
-        //Added so that D-term should be x10 original in profile. 
-        //DTERM_SCALE = 0.000529f, 
-        //0.000529 * (450/10) = 0,023805
-        //0.000529 * 45 = 0,023805
-        //pidCoefficient[axis].Kd = DTERM_SCALE * (pidProfile->pid[axis].D / 10.0f);
-        pidCoefficient[axis].Kd = DTERM_SCALE * (pidProfile->pid[axis].D);
+        //RogueFlight D-term scaling
+        //Added so that D-term should be x12 original in profile. 
+        //DTERM_SCALE = 0.000529f, new DTERM_SCALE = 0.0000441f        
+        pidCoefficient[axis].Kd = DTERM_SCALE * pidProfile->pid[axis].D;
+        //pidCoefficient[axis].Kd = DTERM_SCALE * (pidProfile->pid[axis].D);
         pidCoefficient[axis].Kf = FEEDFORWARD_SCALE * (pidProfile->pid[axis].F / 100.0f);
     }
 #ifdef USE_INTEGRATED_YAW_CONTROL
@@ -1543,6 +1543,8 @@ void FAST_CODE pidController(const pidProfile_t *pidProfile, timeUs_t currentTim
                 }
             }
 #endif
+            //Scale down D-term to classic, from eg. 352 to 35.2
+            //pidData[axis].D = pidData[axis].D / 10.0f;
             pidData[axis].D = pidCoefficient[axis].Kd * delta * tpaFactor_D * dMinFactor;
         } else {
             pidData[axis].D = 0;

@@ -11,8 +11,17 @@
 
 ## RogueFlight_0.0.1034
 
+### News
+
+- Changed D-term scale to x12... so before it was PITCH_D = 35, its now 420.
+
+### Bugfix
+
 - Fixed issue with TPA and PID-loop
 - Added I-term windup code back with TPA added
+- Fixed issues with D-term scale
+
+
 
 ## RogueFlight 0.0.1033
 

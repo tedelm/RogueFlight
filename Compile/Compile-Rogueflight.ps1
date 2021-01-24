@@ -20,13 +20,13 @@ $workdir = "C:\GITHUB\RogueFlight\RogueFlight\Firmware" #Path to your betaflight
 $FlightControllers = @(
 #Add one Flightcontroller per line
 #"BETAFLIGHTF4"
-"HAKRCF405"
+#"HAKRCF405"
 #"HAKRCF411"
 #"REVOLT"
 ##"MATEKF405"
 ##"BETAFLIGHTF4"
 ##"MATEKF411"
-##"MAMBAF411"	
+"MAMBAF411"	
 ##"FURYF4OSD"
 ##"MAMBAF722"
 #"JHEF411"

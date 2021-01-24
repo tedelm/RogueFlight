@@ -806,6 +806,31 @@ static const void *cmsx_CopyControlRateProfile(displayPort_t *pDisplay, const vo
     return NULL;
 }
 
+
+static const OSD_Entry cmsx_menuWATTMODEEntries[] =
+{
+    { "-- WATT MODE --", OME_Label, NULL, NULL, 0},
+
+    { "MAX WATT",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.watt_mode_watt,     0, 10000, 1 }, 0 },
+    { "KWAD AMP",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.watt_mode_maxAmp,     0, 500, 1 }, 0 },
+    { "COMP",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.watt_mode_comp,     0, 25, 1 }, 0 },
+
+    { "BACK", OME_Back, NULL, NULL, 0 },
+    { NULL, OME_END, NULL, NULL, 0 }
+};
+
+CMS_Menu cmsx_menuWATTMODE = {
+#ifdef CMS_MENU_DEBUG
+    .GUARD_text = "XWATT",
+    .GUARD_type = OME_MENU,
+#endif
+
+    .onEnter = cmsx_RateProfileOnEnter,
+    .onExit = cmsx_RateProfileWriteback,
+    .onDisplayUpdate = NULL,
+    .entries = cmsx_menuWATTMODEEntries,
+};
+
 static const OSD_Entry cmsx_menuCopyProfileEntries[] =
 {
     { "-- COPY PROFILE --", OME_Label, NULL, NULL, 0},
@@ -852,7 +877,9 @@ static const OSD_Entry cmsx_menuImuEntries[] =
 #ifdef USE_EXTENDED_CMS_MENUS
     {"COPY PROF", OME_Submenu, cmsMenuChange,                 &cmsx_menuCopyProfile,                                         0},
 #endif /* USE_EXTENDED_CMS_MENUS */
-
+#ifdef USE_WATT_MODE
+    {"WATTMODE", OME_Submenu, cmsMenuChange,                 &cmsx_menuWATTMODE,                                         0},
+#endif
     {"BACK", OME_Back, NULL, NULL, 0},
     {NULL, OME_END, NULL, NULL, 0}
 };

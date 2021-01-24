@@ -2,6 +2,38 @@
 
 ## Funfact, its based on Betaflight 4.2.6
 
+## Good to know
+
+- Betaflight Configurator will work for most features
+    - Will not work for:
+        - PID changes
+
+
+
+PID changes requires these cli cmdlets or change in OSD
+
+```
+set p_pitch = 45
+set i_pitch = 90
+set d_pitch = 380
+set f_pitch = 95
+set p_roll = 45
+set i_roll = 85
+set d_roll = 350
+set f_roll = 90
+set p_yaw = 90
+set i_yaw = 90
+set d_yaw = 0
+set f_yaw = 90
+set d_min_roll = 230
+set d_min_pitch = 250
+set d_min_yaw = 0
+set d_min_boost_gain = 370
+set d_min_advance = 200
+
+```
+
+
 # Releases
 
 - [Releases](https://github.com/tedelm/RogueFlight/releases)

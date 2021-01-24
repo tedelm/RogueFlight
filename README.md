@@ -150,12 +150,15 @@ SET tpaFactor_D_100 = 100
 
 # Todo
 
-- [ ] watt_mode_watt
-    - [ ] Move "watt_mode_watt" to Feature
-    - [ ] Move "watt_mode_watt" to PID controller
+- [x] watt_mode_watt
+    - [x] Move "watt_mode_watt" to Feature
+    - [x] Move "watt_mode_watt" to PID controller
     - [ ] Add support for OSD element
 - [ ] zero_delay
     - [ ] feature that disables everything that adds latency
+- [ ] Add 32khz mode back
+- [ ] Add New PID Controller
+
 
 
 

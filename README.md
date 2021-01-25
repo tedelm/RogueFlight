@@ -40,6 +40,73 @@ set d_min_advance = 200
 - [Firmware](https://github.com/tedelm/RogueFlight/tree/main/Releases)
 
 
+## RogueFlight_0.2.1001
+
+- Fixed Radio/RC issue, no input
+- WATTMODE
+    - Added support for max watt usage based on current Volt and kwad max Amp
+    - Added WATTMODE to OSD menu
+    - Added as FEATURE
+    - Added as AUX-mode, can be enabled using AUX-switch
+- Added TPA factor again
+- D-term is not scaled, use 20-60 (not 200-800)
+
+
+
+- Variables:
+    - watt_mode_watt (0-10000)
+        - Default: 1800, Target max watt allowed to be used
+    - watt_mode_maxAmp (1-500)
+        - Default: 135, the max Amps your kwad draw att 100% throttle
+    - watt_mode_comp (0-25)
+        - Default: 10, Magic sauce, limits the throttle even more
+
+
+```
+SET watt_mode_watt = 1800
+SET watt_mode_maxAmp = 135
+SET watt_mode_comp = 10
+```
+
+Enable feature
+```
+FEATURE WATTMODE
+
+```
+
+```
+SET tpaFactor_P_10 = 100
+SET tpaFactor_P_20 = 100
+SET tpaFactor_P_30 = 100
+SET tpaFactor_P_40 = 100
+SET tpaFactor_P_50 = 100
+SET tpaFactor_P_60 = 100
+SET tpaFactor_P_70 = 100
+SET tpaFactor_P_80 = 100
+SET tpaFactor_P_90 = 100
+SET tpaFactor_P_100 = 100
+SET tpaFactor_I_10 = 100
+SET tpaFactor_I_20 = 100
+SET tpaFactor_I_30 = 100
+SET tpaFactor_I_40 = 100
+SET tpaFactor_I_50 = 100
+SET tpaFactor_I_60 = 100
+SET tpaFactor_I_70 = 100
+SET tpaFactor_I_80 = 100
+SET tpaFactor_I_90 = 100
+SET tpaFactor_I_100 = 100
+SET tpaFactor_D_10 = 100
+SET tpaFactor_D_20 = 100
+SET tpaFactor_D_30 = 100
+SET tpaFactor_D_40 = 100
+SET tpaFactor_D_50 = 100
+SET tpaFactor_D_60 = 100
+SET tpaFactor_D_70 = 100
+SET tpaFactor_D_80 = 100
+SET tpaFactor_D_90 = 100
+SET tpaFactor_D_100 = 100
+```
+
 ## RogueFlight_0.1.1001
 
 - Roll back to solve RC issues

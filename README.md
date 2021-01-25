@@ -40,6 +40,10 @@ set d_min_advance = 200
 - [Firmware](https://github.com/tedelm/RogueFlight/tree/main/Releases)
 
 
+## RogueFlight_0.1.1001
+
+- Roll back to solve RC issues
+
 
 ## RogueFlight_0.0.1034
 

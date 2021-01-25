@@ -371,9 +371,9 @@ static uint16_t cmsx_itermThrottleThreshold;
 static uint8_t  cmsx_motorOutputLimit;
 static int8_t   cmsx_autoProfileCellCount;
 #ifdef USE_D_MIN
-static uint8_t  cmsx_d_min[XYZ_AXIS_COUNT];
-static uint8_t  cmsx_d_min_gain;
-static uint8_t  cmsx_d_min_advance;
+static uint16_t  cmsx_d_min[XYZ_AXIS_COUNT];
+static uint16_t  cmsx_d_min_gain;
+static uint16_t  cmsx_d_min_advance;
 #endif
 
 #ifdef USE_ITERM_RELAX
@@ -505,11 +505,11 @@ static const OSD_Entry cmsx_menuProfileOtherEntries[] = {
     { "AUTO CELL CNT", OME_INT8, NULL, &(OSD_INT8_t) { &cmsx_autoProfileCellCount, AUTO_PROFILE_CELL_COUNT_CHANGE, MAX_AUTO_DETECT_CELL_COUNT, 1}, 0 },
 
 #ifdef USE_D_MIN
-    { "D_MIN ROLL",  OME_UINT8,  NULL, &(OSD_UINT8_t) { &cmsx_d_min[FD_ROLL],      0, 100, 1 }, 0 },
-    { "D_MIN PITCH", OME_UINT8,  NULL, &(OSD_UINT8_t) { &cmsx_d_min[FD_PITCH],     0, 100, 1 }, 0 },
-    { "D_MIN YAW",   OME_UINT8,  NULL, &(OSD_UINT8_t) { &cmsx_d_min[FD_YAW],       0, 100, 1 }, 0 },
-    { "D_MIN GAIN",  OME_UINT8,  NULL, &(OSD_UINT8_t) { &cmsx_d_min_gain,          0, 100, 1 }, 0 },
-    { "D_MIN ADV",   OME_UINT8,  NULL, &(OSD_UINT8_t) { &cmsx_d_min_advance,       0, 200, 1 }, 0 },
+    { "D_MIN ROLL",  OME_UINT16,  NULL, &(OSD_UINT16_t) { &cmsx_d_min[FD_ROLL],      0, 1000, 1 }, 0 },
+    { "D_MIN PITCH", OME_UINT16,  NULL, &(OSD_UINT16_t) { &cmsx_d_min[FD_PITCH],     0, 1000, 1 }, 0 },
+    { "D_MIN YAW",   OME_UINT16,  NULL, &(OSD_UINT16_t) { &cmsx_d_min[FD_YAW],       0, 1000, 1 }, 0 },
+    { "D_MIN GAIN",  OME_UINT16,  NULL, &(OSD_UINT16_t) { &cmsx_d_min_gain,          0, 1000, 1 }, 0 },
+    { "D_MIN ADV",   OME_UINT16,  NULL, &(OSD_UINT16_t) { &cmsx_d_min_advance,       0, 1000, 1 }, 0 },
 #endif
 
     { "BACK", OME_Back, NULL, NULL, 0 },

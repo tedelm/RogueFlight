@@ -229,7 +229,8 @@ SET tpaFactor_D_100 = 100
 - [x] watt_mode_watt
     - [x] Move "watt_mode_watt" to Feature
     - [x] Move "watt_mode_watt" to PID controller
-    - [ ] Add support for OSD element (OSD_Entry)
+    - [x] Add support for OSD element (OSD_Entry)
+- [ ] Add new TPA as OSD element     
 - [ ] zero_delay
     - [ ] feature that disables everything that adds latency
 - [ ] Add 32khz mode back

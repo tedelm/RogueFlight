@@ -89,7 +89,10 @@ typedef struct controlRateConfig_s {
     uint16_t tpaFactor_D_70;
     uint16_t tpaFactor_D_80;
     uint16_t tpaFactor_D_90;
-    uint16_t tpaFactor_D_100;    
+    uint16_t tpaFactor_D_100;
+    uint16_t watt_mode_watt;
+    uint16_t watt_mode_maxAmp;
+    uint16_t watt_mode_comp;
 } controlRateConfig_t;
 
 PG_DECLARE_ARRAY(controlRateConfig_t, CONTROL_RATE_PROFILE_COUNT, controlRateProfiles);

@@ -944,6 +944,11 @@ const clivalue_t valueTable[] = {
     { "tpaFactor_D_80",             VAR_UINT16  | PROFILE_RATE_VALUE, .config.minmax = { 10, 1000}, PG_CONTROL_RATE_PROFILES, offsetof(controlRateConfig_t, tpaFactor_D_80) },
     { "tpaFactor_D_90",             VAR_UINT16  | PROFILE_RATE_VALUE, .config.minmax = { 10, 1000}, PG_CONTROL_RATE_PROFILES, offsetof(controlRateConfig_t, tpaFactor_D_90) },
     { "tpaFactor_D_100",            VAR_UINT16  | PROFILE_RATE_VALUE, .config.minmax = { 10, 1000}, PG_CONTROL_RATE_PROFILES, offsetof(controlRateConfig_t, tpaFactor_D_100) },	
+#ifdef USE_WATT_MODE
+    { "watt_mode_watt",            VAR_UINT16  | PROFILE_RATE_VALUE, .config.minmax = { 10, 10000}, PG_CONTROL_RATE_PROFILES, offsetof(controlRateConfig_t, watt_mode_watt) },
+    { "watt_mode_maxAmp",            VAR_UINT16  | PROFILE_RATE_VALUE, .config.minmax = { 1, 500}, PG_CONTROL_RATE_PROFILES, offsetof(controlRateConfig_t, watt_mode_maxAmp) },
+    { "watt_mode_comp",            VAR_UINT16  | PROFILE_RATE_VALUE, .config.minmax = { 0, 25}, PG_CONTROL_RATE_PROFILES, offsetof(controlRateConfig_t, watt_mode_comp) },
+#endif    
 #ifdef USE_TPA_MODE
     { "tpa_mode",                   VAR_UINT8  | PROFILE_RATE_VALUE | MODE_LOOKUP, .config.lookup = { TABLE_TPA_MODE }, PG_CONTROL_RATE_PROFILES, offsetof(controlRateConfig_t, tpaMode) },
 #endif

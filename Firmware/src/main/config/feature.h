@@ -50,6 +50,7 @@ typedef enum {
     FEATURE_TRANSPONDER = 1 << 21,
     FEATURE_AIRMODE = 1 << 22,
     FEATURE_RX_SPI = 1 << 25,
+    FEATURE_WATTMODE = 1 << 26,
     //FEATURE_SOFTSPI = 1 << 26, (removed)
     FEATURE_ESC_SENSOR = 1 << 27,
     FEATURE_ANTI_GRAVITY = 1 << 28,

@@ -93,7 +93,10 @@ void pgResetFn_controlRateProfiles(controlRateConfig_t *controlRateConfig)
             .tpaFactor_D_70 = 100,
             .tpaFactor_D_80 = 90,
             .tpaFactor_D_90 = 80,
-            .tpaFactor_D_100 = 70
+            .tpaFactor_D_100 = 70,
+            .watt_mode_watt = 1800,
+            .watt_mode_maxAmp = 135,
+            .watt_mode_comp = 10
         );
     }
 }

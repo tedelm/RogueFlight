@@ -579,7 +579,7 @@ static bool mspCommonProcessOutCommand(int16_t cmdMSP, sbuf_t *dst, mspPostProce
     case MSP_FC_VERSION:
         sbufWriteU8(dst, FC_VERSION_MAJOR);
         sbufWriteU8(dst, FC_VERSION_MINOR);
-        sbufWriteU8(dst, FC_VERSION_PATCH_LEVEL);
+        sbufWriteU16(dst, FC_VERSION_PATCH_LEVEL);
         break;
 
     case MSP_BOARD_INFO:
@@ -1275,6 +1275,9 @@ static bool mspProcessOutCommand(int16_t cmdMSP, sbuf_t *dst)
         sbufWriteU16(dst, currentControlRateProfile->tpaFactor_D_80);
         sbufWriteU16(dst, currentControlRateProfile->tpaFactor_D_90);
         sbufWriteU16(dst, currentControlRateProfile->tpaFactor_D_100);
+        sbufWriteU16(dst, currentControlRateProfile->watt_mode_watt);
+        sbufWriteU16(dst, currentControlRateProfile->watt_mode_maxAmp);
+        sbufWriteU16(dst, currentControlRateProfile->watt_mode_comp);
 
         break;
 
@@ -2347,7 +2350,10 @@ static mspResult_e mspProcessInCommand(mspDescriptor_t srcDesc, int16_t cmdMSP, 
             currentControlRateProfile->tpaFactor_D_70 = sbufReadU16(src);
             currentControlRateProfile->tpaFactor_D_80 = sbufReadU16(src);
             currentControlRateProfile->tpaFactor_D_90 = sbufReadU16(src);
-            currentControlRateProfile->tpaFactor_D_100 = sbufReadU16(src);            
+            currentControlRateProfile->tpaFactor_D_100 = sbufReadU16(src);
+            currentControlRateProfile->watt_mode_watt = sbufReadU16(src);
+            currentControlRateProfile->watt_mode_maxAmp = sbufReadU16(src);
+            currentControlRateProfile->watt_mode_comp = sbufReadU16(src);            
 
             initRcProcessing();
         } else {

@@ -40,6 +40,11 @@ set d_min_advance = 200
 - [Firmware](https://github.com/tedelm/RogueFlight/tree/main/Releases)
 
 
+## RogueFlight 0.3.1001
+
+- Fixed D-term scaled, D-term PID should now be between 200-1000 (if before: 45, now: 450)
+
+
 ## RogueFlight_0.2.1001
 
 - Fixed Radio/RC issue, no input

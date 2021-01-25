@@ -362,7 +362,7 @@ static int applyStepAdjustment(controlRateConfig_t *controlRateConfig, uint8_t a
         break;
     case ADJUSTMENT_PITCH_ROLL_D:
     case ADJUSTMENT_PITCH_D:
-        newValue = constrain((int)currentPidProfile->pid[PID_PITCH].D + delta, 0, 200); // FIXME magic numbers repeated in cli.c
+        newValue = constrain((int)currentPidProfile->pid[PID_PITCH].D + delta, 0, 1000); // FIXME magic numbers repeated in cli.c
         currentPidProfile->pid[PID_PITCH].D = newValue;
         blackboxLogInflightAdjustmentEvent(ADJUSTMENT_PITCH_D, newValue);
         if (adjustmentFunction == ADJUSTMENT_PITCH_D) {
@@ -371,7 +371,7 @@ static int applyStepAdjustment(controlRateConfig_t *controlRateConfig, uint8_t a
         // fall through for combined ADJUSTMENT_PITCH_ROLL_D
         FALLTHROUGH;
     case ADJUSTMENT_ROLL_D:
-        newValue = constrain((int)currentPidProfile->pid[PID_ROLL].D + delta, 0, 200); // FIXME magic numbers repeated in cli.c
+        newValue = constrain((int)currentPidProfile->pid[PID_ROLL].D + delta, 0, 1000); // FIXME magic numbers repeated in cli.c
         currentPidProfile->pid[PID_ROLL].D = newValue;
         blackboxLogInflightAdjustmentEvent(ADJUSTMENT_ROLL_D, newValue);
         break;
@@ -386,7 +386,7 @@ static int applyStepAdjustment(controlRateConfig_t *controlRateConfig, uint8_t a
         blackboxLogInflightAdjustmentEvent(ADJUSTMENT_YAW_I, newValue);
         break;
     case ADJUSTMENT_YAW_D:
-        newValue = constrain((int)currentPidProfile->pid[PID_YAW].D + delta, 0, 200); // FIXME magic numbers repeated in cli.c
+        newValue = constrain((int)currentPidProfile->pid[PID_YAW].D + delta, 0, 1000); // FIXME magic numbers repeated in cli.c
         currentPidProfile->pid[PID_YAW].D = newValue;
         blackboxLogInflightAdjustmentEvent(ADJUSTMENT_YAW_D, newValue);
         break;
@@ -523,7 +523,7 @@ static int applyAbsoluteAdjustment(controlRateConfig_t *controlRateConfig, adjus
         break;
     case ADJUSTMENT_PITCH_ROLL_D:
     case ADJUSTMENT_PITCH_D:
-        newValue = constrain(value, 0, 200); // FIXME magic numbers repeated in cli.c
+        newValue = constrain(value, 0, 1000); // FIXME magic numbers repeated in cli.c
         currentPidProfile->pid[PID_PITCH].D = newValue;
         blackboxLogInflightAdjustmentEvent(ADJUSTMENT_PITCH_D, newValue);
         if (adjustmentFunction == ADJUSTMENT_PITCH_D) {
@@ -532,7 +532,7 @@ static int applyAbsoluteAdjustment(controlRateConfig_t *controlRateConfig, adjus
         // fall through for combined ADJUSTMENT_PITCH_ROLL_D
         FALLTHROUGH;
     case ADJUSTMENT_ROLL_D:
-        newValue = constrain(value, 0, 200); // FIXME magic numbers repeated in cli.c
+        newValue = constrain(value, 0, 1000); // FIXME magic numbers repeated in cli.c
         currentPidProfile->pid[PID_ROLL].D = newValue;
         blackboxLogInflightAdjustmentEvent(ADJUSTMENT_ROLL_D, newValue);
         break;
@@ -547,7 +547,7 @@ static int applyAbsoluteAdjustment(controlRateConfig_t *controlRateConfig, adjus
         blackboxLogInflightAdjustmentEvent(ADJUSTMENT_YAW_I, newValue);
         break;
     case ADJUSTMENT_YAW_D:
-        newValue = constrain(value, 0, 200); // FIXME magic numbers repeated in cli.c
+        newValue = constrain(value, 0, 1000); // FIXME magic numbers repeated in cli.c
         currentPidProfile->pid[PID_YAW].D = newValue;
         blackboxLogInflightAdjustmentEvent(ADJUSTMENT_YAW_D, newValue);
         break;
@@ -605,7 +605,7 @@ static uint8_t applySelectAdjustment(adjustmentFunction_e adjustmentFunction, ui
         break;
     case ADJUSTMENT_HORIZON_STRENGTH:
         {
-            uint8_t newValue = constrain(position, 0, 200); // FIXME magic numbers repeated in serial_cli.c
+            uint16_t newValue = constrain(position, 0, 1000); // FIXME magic numbers repeated in serial_cli.c
             if (currentPidProfile->pid[PID_LEVEL].D != newValue) {
                 beeps = ((newValue - currentPidProfile->pid[PID_LEVEL].D) / 8) + 1;
                 currentPidProfile->pid[PID_LEVEL].D = newValue;

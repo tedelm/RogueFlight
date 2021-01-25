@@ -145,8 +145,8 @@ void resetPidProfile(pidProfile_t *pidProfile)
 {
     RESET_CONFIG(pidProfile_t, pidProfile,
         .pid = {
-            [PID_ROLL] =  { 42, 85, 35, 90 },
-            [PID_PITCH] = { 46, 90, 38, 95 },
+            [PID_ROLL] =  { 42, 85, 350, 90 },
+            [PID_PITCH] = { 46, 90, 380, 95 },
             [PID_YAW] =   { 45, 90, 0, 90 },
             [PID_LEVEL] = { 50, 50, 75, 0 },
             [PID_MAG] =   { 40, 0, 0, 0 },
@@ -209,9 +209,9 @@ void resetPidProfile(pidProfile_t *pidProfile)
         .use_integrated_yaw = false,
         .integrated_yaw_relax = 200,
         .thrustLinearization = 0,
-        .d_min = { 23, 25, 0 },      // roll, pitch, yaw
-        .d_min_gain = 37,
-        .d_min_advance = 20,
+        .d_min = { 230, 250, 0 },      // roll, pitch, yaw
+        .d_min_gain = 370,
+        .d_min_advance = 200,
         .motor_output_limit = 100,
         .auto_profile_cell_count = AUTO_PROFILE_CELL_COUNT_STAY,
         .transient_throttle_limit = 0,
@@ -231,8 +231,8 @@ void resetPidProfile(pidProfile_t *pidProfile)
         .vbat_sag_compensation = 0,
     );
 #ifndef USE_D_MIN
-    pidProfile->pid[PID_ROLL].D = 30;
-    pidProfile->pid[PID_PITCH].D = 32;
+    pidProfile->pid[PID_ROLL].D = 300;
+    pidProfile->pid[PID_PITCH].D = 320;
 #endif
 }
 
@@ -742,7 +742,7 @@ void pidInitConfig(const pidProfile_t *pidProfile)
 #endif
 #if defined(USE_D_MIN)
     for (int axis = FD_ROLL; axis <= FD_YAW; ++axis) {
-        const uint8_t dMin = pidProfile->d_min[axis];
+        const uint16_t dMin = pidProfile->d_min[axis];
         if ((dMin > 0) && (dMin < pidProfile->pid[axis].D)) {
             dMinPercent[axis] = dMin / (float)(pidProfile->pid[axis].D);
         } else {

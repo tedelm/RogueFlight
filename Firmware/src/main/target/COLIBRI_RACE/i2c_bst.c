@@ -332,9 +332,9 @@ static bool bstSlaveProcessFeedbackCommand(uint8_t bstRequest)
 
         case BST_PID:
             for (i = 0; i < PID_ITEM_COUNT; i++) {
-                bstWrite8(currentPidProfile->pid[i].P);
-                bstWrite8(currentPidProfile->pid[i].I);
-                bstWrite8(currentPidProfile->pid[i].D);
+                bstWrite16(currentPidProfile->pid[i].P);
+                bstWrite16(currentPidProfile->pid[i].I);
+                bstWrite16(currentPidProfile->pid[i].D);
             }
             pidInitConfig(currentPidProfile);
             break;
@@ -446,9 +446,9 @@ static bool bstSlaveProcessWriteCommand(uint8_t bstWriteCommand)
             break;
         case BST_SET_PID:
             for (i = 0; i < PID_ITEM_COUNT; i++) {
-                currentPidProfile->pid[i].P = bstRead8();
-                currentPidProfile->pid[i].I = bstRead8();
-                currentPidProfile->pid[i].D = bstRead8();
+                currentPidProfile->pid[i].P = bstRead16();
+                currentPidProfile->pid[i].I = bstRead16();
+                currentPidProfile->pid[i].D = bstRead16();
             }
             break;
         case BST_SET_RC_TUNING:

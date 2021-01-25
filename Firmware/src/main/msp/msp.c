@@ -579,7 +579,7 @@ static bool mspCommonProcessOutCommand(int16_t cmdMSP, sbuf_t *dst, mspPostProce
     case MSP_FC_VERSION:
         sbufWriteU8(dst, FC_VERSION_MAJOR);
         sbufWriteU8(dst, FC_VERSION_MINOR);
-        sbufWriteU16(dst, FC_VERSION_PATCH_LEVEL);
+        sbufWriteU8(dst, FC_VERSION_PATCH_LEVEL);
         break;
 
     case MSP_BOARD_INFO:
@@ -1275,17 +1275,14 @@ static bool mspProcessOutCommand(int16_t cmdMSP, sbuf_t *dst)
         sbufWriteU16(dst, currentControlRateProfile->tpaFactor_D_80);
         sbufWriteU16(dst, currentControlRateProfile->tpaFactor_D_90);
         sbufWriteU16(dst, currentControlRateProfile->tpaFactor_D_100);
-        sbufWriteU16(dst, currentControlRateProfile->watt_mode_watt);    
-        sbufWriteU16(dst, currentControlRateProfile->watt_mode_maxAmp);
-        sbufWriteU16(dst, currentControlRateProfile->watt_mode_comp);        
 
         break;
 
     case MSP_PID:
         for (int i = 0; i < PID_ITEM_COUNT; i++) {
-            sbufWriteU16(dst, currentPidProfile->pid[i].P);
-            sbufWriteU16(dst, currentPidProfile->pid[i].I);
-            sbufWriteU16(dst, currentPidProfile->pid[i].D);
+            sbufWriteU8(dst, currentPidProfile->pid[i].P);
+            sbufWriteU8(dst, currentPidProfile->pid[i].I);
+            sbufWriteU8(dst, currentPidProfile->pid[i].D);
         }
         break;
 
@@ -2212,9 +2209,9 @@ static mspResult_e mspProcessInCommand(mspDescriptor_t srcDesc, int16_t cmdMSP, 
 
     case MSP_SET_PID:
         for (int i = 0; i < PID_ITEM_COUNT; i++) {
-            currentPidProfile->pid[i].P = sbufReadU16(src);
-            currentPidProfile->pid[i].I = sbufReadU16(src);
-            currentPidProfile->pid[i].D = sbufReadU16(src);
+            currentPidProfile->pid[i].P = sbufReadU8(src);
+            currentPidProfile->pid[i].I = sbufReadU8(src);
+            currentPidProfile->pid[i].D = sbufReadU8(src);
         }
         pidInitConfig(currentPidProfile);
         break;
@@ -2351,9 +2348,6 @@ static mspResult_e mspProcessInCommand(mspDescriptor_t srcDesc, int16_t cmdMSP, 
             currentControlRateProfile->tpaFactor_D_80 = sbufReadU16(src);
             currentControlRateProfile->tpaFactor_D_90 = sbufReadU16(src);
             currentControlRateProfile->tpaFactor_D_100 = sbufReadU16(src);            
-            currentControlRateProfile->watt_mode_watt = sbufReadU16(src);
-            currentControlRateProfile->watt_mode_maxAmp = sbufReadU16(src);
-            currentControlRateProfile->watt_mode_comp = sbufReadU16(src);            
 
             initRcProcessing();
         } else {

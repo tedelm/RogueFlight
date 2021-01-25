@@ -944,14 +944,6 @@ const clivalue_t valueTable[] = {
     { "tpaFactor_D_80",             VAR_UINT16  | PROFILE_RATE_VALUE, .config.minmax = { 10, 1000}, PG_CONTROL_RATE_PROFILES, offsetof(controlRateConfig_t, tpaFactor_D_80) },
     { "tpaFactor_D_90",             VAR_UINT16  | PROFILE_RATE_VALUE, .config.minmax = { 10, 1000}, PG_CONTROL_RATE_PROFILES, offsetof(controlRateConfig_t, tpaFactor_D_90) },
     { "tpaFactor_D_100",            VAR_UINT16  | PROFILE_RATE_VALUE, .config.minmax = { 10, 1000}, PG_CONTROL_RATE_PROFILES, offsetof(controlRateConfig_t, tpaFactor_D_100) },	
-
-#ifdef USE_WATT_MODE
-    { "watt_mode_watt",            VAR_UINT16  | PROFILE_RATE_VALUE, .config.minmax = { 10, 10000}, PG_CONTROL_RATE_PROFILES, offsetof(controlRateConfig_t, watt_mode_watt) },
-    { "watt_mode_maxAmp",            VAR_UINT16  | PROFILE_RATE_VALUE, .config.minmax = { 1, 500}, PG_CONTROL_RATE_PROFILES, offsetof(controlRateConfig_t, watt_mode_maxAmp) },
-    { "watt_mode_comp",            VAR_UINT16  | PROFILE_RATE_VALUE, .config.minmax = { 0, 25}, PG_CONTROL_RATE_PROFILES, offsetof(controlRateConfig_t, watt_mode_comp) },
-#endif
-
-
 #ifdef USE_TPA_MODE
     { "tpa_mode",                   VAR_UINT8  | PROFILE_RATE_VALUE | MODE_LOOKUP, .config.lookup = { TABLE_TPA_MODE }, PG_CONTROL_RATE_PROFILES, offsetof(controlRateConfig_t, tpaMode) },
 #endif
@@ -1033,7 +1025,7 @@ const clivalue_t valueTable[] = {
 
 // PG_PID_PROFILE
 #ifdef USE_PROFILE_NAMES
-    { "profile_name",               VAR_UINT16  | PROFILE_VALUE | MODE_STRING, .config.string = { 1, MAX_PROFILE_NAME_LENGTH, STRING_FLAGS_NONE }, PG_PID_PROFILE, offsetof(pidProfile_t, profileName) },
+    { "profile_name",               VAR_UINT8  | PROFILE_VALUE | MODE_STRING, .config.string = { 1, MAX_PROFILE_NAME_LENGTH, STRING_FLAGS_NONE }, PG_PID_PROFILE, offsetof(pidProfile_t, profileName) },
 #endif
 #ifdef USE_DYN_LPF
     { "dyn_lpf_dterm_min_hz",       VAR_UINT16 | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 1000 }, PG_PID_PROFILE, offsetof(pidProfile_t, dyn_lpf_dterm_min_hz) },
@@ -1091,22 +1083,22 @@ const clivalue_t valueTable[] = {
     { "acro_trainer_gain",          VAR_UINT8  | PROFILE_VALUE, .config.minmaxUnsigned = { 25, 255 }, PG_PID_PROFILE, offsetof(pidProfile_t, acro_trainer_gain) },
 #endif // USE_ACRO_TRAINER
 
-    { "p_pitch",                    VAR_UINT16  | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 200 }, PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_PITCH].P) },
-    { "i_pitch",                    VAR_UINT16  | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 200 }, PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_PITCH].I) },
-    { "d_pitch",                    VAR_UINT16  | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 800 }, PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_PITCH].D) },
+    { "p_pitch",                    VAR_UINT8  | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 200 }, PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_PITCH].P) },
+    { "i_pitch",                    VAR_UINT8  | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 200 }, PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_PITCH].I) },
+    { "d_pitch",                    VAR_UINT8  | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 200 }, PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_PITCH].D) },
     { "f_pitch",                    VAR_UINT16 | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 2000 },PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_PITCH].F) },
-    { "p_roll",                     VAR_UINT16  | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 200 }, PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_ROLL].P) },
-    { "i_roll",                     VAR_UINT16  | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 200 }, PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_ROLL].I) },
-    { "d_roll",                     VAR_UINT16  | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 800 }, PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_ROLL].D) },
+    { "p_roll",                     VAR_UINT8  | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 200 }, PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_ROLL].P) },
+    { "i_roll",                     VAR_UINT8  | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 200 }, PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_ROLL].I) },
+    { "d_roll",                     VAR_UINT8  | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 200 }, PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_ROLL].D) },
     { "f_roll",                     VAR_UINT16 | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 2000 },PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_ROLL].F) },
-    { "p_yaw",                      VAR_UINT16  | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 200 }, PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_YAW].P) },
-    { "i_yaw",                      VAR_UINT16  | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 200 }, PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_YAW].I) },
-    { "d_yaw",                      VAR_UINT16  | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 800 }, PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_YAW].D) },
+    { "p_yaw",                      VAR_UINT8  | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 200 }, PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_YAW].P) },
+    { "i_yaw",                      VAR_UINT8  | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 200 }, PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_YAW].I) },
+    { "d_yaw",                      VAR_UINT8  | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 200 }, PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_YAW].D) },
     { "f_yaw",                      VAR_UINT16 | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 2000 },PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_YAW].F) },
 
-    { "angle_level_strength",       VAR_UINT16  | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 200 }, PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_LEVEL].P) },
-    { "horizon_level_strength",     VAR_UINT16  | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 200 }, PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_LEVEL].I) },
-    { "horizon_transition",         VAR_UINT16  | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 800 }, PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_LEVEL].D) },
+    { "angle_level_strength",       VAR_UINT8  | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 200 }, PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_LEVEL].P) },
+    { "horizon_level_strength",     VAR_UINT8  | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 200 }, PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_LEVEL].I) },
+    { "horizon_transition",         VAR_UINT8  | PROFILE_VALUE, .config.minmaxUnsigned = { 0, 200 }, PG_PID_PROFILE, offsetof(pidProfile_t, pid[PID_LEVEL].D) },
 
     { "level_limit",                VAR_UINT8  | PROFILE_VALUE, .config.minmaxUnsigned = { 10, 90 }, PG_PID_PROFILE, offsetof(pidProfile_t, levelAngleLimit) },
 
@@ -1126,11 +1118,11 @@ const clivalue_t valueTable[] = {
 #endif
 
 #ifdef USE_D_MIN
-    { "d_min_roll",                 VAR_UINT16 | PROFILE_VALUE,  .config.minmaxUnsigned = { 0, 800 }, PG_PID_PROFILE, offsetof(pidProfile_t, d_min[FD_ROLL]) },
-    { "d_min_pitch",                VAR_UINT16 | PROFILE_VALUE,  .config.minmaxUnsigned = { 0, 800 }, PG_PID_PROFILE, offsetof(pidProfile_t, d_min[FD_PITCH]) },
-    { "d_min_yaw",                  VAR_UINT16 | PROFILE_VALUE,  .config.minmaxUnsigned = { 0, 800 }, PG_PID_PROFILE, offsetof(pidProfile_t, d_min[FD_YAW]) },
-    { "d_min_boost_gain",           VAR_UINT16 | PROFILE_VALUE,  .config.minmaxUnsigned = { 0, 800 }, PG_PID_PROFILE, offsetof(pidProfile_t, d_min_gain) },
-    { "d_min_advance",              VAR_UINT16 | PROFILE_VALUE,  .config.minmaxUnsigned = { 0, 800 }, PG_PID_PROFILE, offsetof(pidProfile_t, d_min_advance) },
+    { "d_min_roll",                 VAR_UINT8 | PROFILE_VALUE,  .config.minmaxUnsigned = { 0, 100 }, PG_PID_PROFILE, offsetof(pidProfile_t, d_min[FD_ROLL]) },
+    { "d_min_pitch",                VAR_UINT8 | PROFILE_VALUE,  .config.minmaxUnsigned = { 0, 100 }, PG_PID_PROFILE, offsetof(pidProfile_t, d_min[FD_PITCH]) },
+    { "d_min_yaw",                  VAR_UINT8 | PROFILE_VALUE,  .config.minmaxUnsigned = { 0, 100 }, PG_PID_PROFILE, offsetof(pidProfile_t, d_min[FD_YAW]) },
+    { "d_min_boost_gain",           VAR_UINT8 | PROFILE_VALUE,  .config.minmaxUnsigned = { 0, 100 }, PG_PID_PROFILE, offsetof(pidProfile_t, d_min_gain) },
+    { "d_min_advance",              VAR_UINT8 | PROFILE_VALUE,  .config.minmaxUnsigned = { 0, 200 }, PG_PID_PROFILE, offsetof(pidProfile_t, d_min_advance) },
 #endif
 
     { "motor_output_limit",         VAR_UINT8 | PROFILE_VALUE,  .config.minmaxUnsigned = { MOTOR_OUTPUT_LIMIT_PERCENT_MIN, MOTOR_OUTPUT_LIMIT_PERCENT_MAX }, PG_PID_PROFILE, offsetof(pidProfile_t, motor_output_limit) },

@@ -38,9 +38,7 @@
 // Scaling factors for Pids for better tunable range in configurator for betaflight pid controller. The scaling is based on legacy pid controller or previous float
 #define PTERM_SCALE 0.032029f
 #define ITERM_SCALE 0.244381f
-//#define DTERM_SCALE 0.000529f
-// 12 (11,995) times the old style D-term
-#define DTERM_SCALE 0.0000441f
+#define DTERM_SCALE 0.000529f
 
 // The constant scale factor to replace the Kd component of the feedforward calculation.
 // This value gives the same "feel" as the previous Kd default of 26 (26 * DTERM_SCALE)
@@ -83,9 +81,9 @@ typedef enum {
 } pidCrashRecovery_e;
 
 typedef struct pidf_s {
-    uint16_t P;
-    uint16_t I;
-    uint16_t D;
+    uint8_t P;
+    uint8_t I;
+    uint8_t D;
     uint16_t F;
 } pidf_t;
 
@@ -173,9 +171,9 @@ typedef struct pidProfile_s {
     uint8_t use_integrated_yaw;             // Selects whether the yaw pidsum should integrated
     uint8_t integrated_yaw_relax;           // Specifies how much integrated yaw should be reduced to offset the drag based yaw component
     uint8_t thrustLinearization;            // Compensation factor for pid linearization
-    uint16_t d_min[XYZ_AXIS_COUNT];          // Minimum D value on each axis
-    uint16_t d_min_gain;                     // Gain factor for amount of gyro / setpoint activity required to boost D
-    uint16_t d_min_advance;                  // Percentage multiplier for setpoint input to boost algorithm
+    uint8_t d_min[XYZ_AXIS_COUNT];          // Minimum D value on each axis
+    uint8_t d_min_gain;                     // Gain factor for amount of gyro / setpoint activity required to boost D
+    uint8_t d_min_advance;                  // Percentage multiplier for setpoint input to boost algorithm
     uint8_t motor_output_limit;             // Upper limit of the motor output (percent)
     int8_t auto_profile_cell_count;         // Cell count for this profile to be used with if auto PID profile switching is used
     uint8_t transient_throttle_limit;       // Maximum DC component of throttle change to mix into throttle to prevent airmode mirroring noise

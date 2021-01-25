@@ -126,17 +126,14 @@ float getThrottlePIDAttenuation(void)
 {
     return throttlePIDAttenuation;
 }
-
 float getThrottlePIDAttenuationP(void)
 {
     return throttlePIDAttenuationP;
 }
-
 float getThrottlePIDAttenuationI(void)
 {
     return throttlePIDAttenuationI;
 }
-
 float getThrottlePIDAttenuationD(void)
 {
     return throttlePIDAttenuationD;
@@ -763,26 +760,26 @@ FAST_CODE_NOINLINE void updateRcCommands(void)
 {
     isRxDataNew = true;
 
+/* REMOVED
     // PITCH & ROLL only dynamic PID adjustment,  depending on throttle value
-    //int32_t prop;
-    //if (rcData[THROTTLE] < currentControlRateProfile->tpa_breakpoint) {
-    //    prop = 100;
-    //    throttlePIDAttenuation = 1.0f;
-    //} else {
-    //    if (rcData[THROTTLE] < 2000) {
-    //        prop = 100 - (uint16_t)currentControlRateProfile->dynThrPID * (rcData[THROTTLE] - currentControlRateProfile->tpa_breakpoint) / (2000 - currentControlRateProfile->tpa_breakpoint);
-    //    } else {
-    //        prop = 100 - currentControlRateProfile->dynThrPID;
-    //    }
-    //    throttlePIDAttenuation = prop / 100.0f;
-    //}
+    int32_t prop;
+    if (rcData[THROTTLE] < currentControlRateProfile->tpa_breakpoint) {
+        prop = 100;
+        throttlePIDAttenuation = 1.0f;
+    } else {
+        if (rcData[THROTTLE] < 2000) {
+            prop = 100 - (uint16_t)currentControlRateProfile->dynThrPID * (rcData[THROTTLE] - currentControlRateProfile->tpa_breakpoint) / (2000 - currentControlRateProfile->tpa_breakpoint);
+        } else {
+            prop = 100 - currentControlRateProfile->dynThrPID;
+        }
+        throttlePIDAttenuation = prop / 100.0f;
+    }
+*/
 
-
-
+//NEW TPA
 int32_t TPA_P = 100;
 int32_t TPA_I = 100;
 int32_t TPA_D = 100;
-
 
     if (rcData[THROTTLE] < 2000) {
         TPA_P = (uint16_t)currentControlRateProfile->tpaFactor_P_100;
@@ -847,6 +844,13 @@ int32_t TPA_D = 100;
     throttlePIDAttenuationP = TPA_P / 100.0f;
     throttlePIDAttenuationI = TPA_I / 100.0f;
     throttlePIDAttenuationD = TPA_D / 100.0f;
+
+
+
+
+
+
+
 
 
     for (int axis = 0; axis < 3; axis++) {

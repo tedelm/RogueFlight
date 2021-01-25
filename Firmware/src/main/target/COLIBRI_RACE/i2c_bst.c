@@ -325,7 +325,7 @@ static bool bstSlaveProcessFeedbackCommand(uint8_t bstRequest)
             bstWrite8(currentControlRateProfile->dynThrPID);
             bstWrite8(currentControlRateProfile->thrMid8);
             bstWrite8(currentControlRateProfile->thrExpo8);
-            bstWrite16(currentControlRateProfile->tpa_breakpoint);           
+            bstWrite16(currentControlRateProfile->tpa_breakpoint);
             bstWrite8(currentControlRateProfile->rcExpo[FD_YAW]);
             bstWrite8(currentControlRateProfile->rcRates[FD_YAW]);
             break;
@@ -464,7 +464,6 @@ static bool bstSlaveProcessWriteCommand(uint8_t bstWriteCommand)
                 currentControlRateProfile->thrMid8 = bstRead8();
                 currentControlRateProfile->thrExpo8 = bstRead8();
                 currentControlRateProfile->tpa_breakpoint = bstRead16();
-
                 if (bstReadDataSize() >= 11) {
                     currentControlRateProfile->rcExpo[FD_YAW] = bstRead8();
                 }

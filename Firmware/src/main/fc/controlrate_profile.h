@@ -54,7 +54,7 @@ typedef struct controlRateConfig_s {
     uint8_t rcExpo[3];
     uint8_t rates[3];
     uint8_t dynThrPID;
-    uint16_t tpa_breakpoint;                // Breakpoint where TPA is activated     
+    uint16_t tpa_breakpoint;                // Breakpoint where TPA is activated
     uint8_t throttle_limit_type;            // Sets the throttle limiting type - off, scale or clip
     uint8_t throttle_limit_percent;         // Sets the maximum pilot commanded throttle limit
     uint16_t rate_limit[3];                 // Sets the maximum rate for the axes
@@ -89,11 +89,7 @@ typedef struct controlRateConfig_s {
     uint16_t tpaFactor_D_70;
     uint16_t tpaFactor_D_80;
     uint16_t tpaFactor_D_90;
-    uint16_t tpaFactor_D_100;
-    uint16_t watt_mode_watt;
-    uint16_t watt_mode_maxAmp;
-    uint16_t watt_mode_comp;    
-
+    uint16_t tpaFactor_D_100;    
 } controlRateConfig_t;
 
 PG_DECLARE_ARRAY(controlRateConfig_t, CONTROL_RATE_PROFILE_COUNT, controlRateProfiles);

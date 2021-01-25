@@ -45,8 +45,8 @@ void pgResetFn_controlRateProfiles(controlRateConfig_t *controlRateConfig)
         RESET_CONFIG(controlRateConfig_t, &controlRateConfig[i],
             .thrMid8 = 50,
             .thrExpo8 = 0,
-            .dynThrPID = 10,
-            .tpa_breakpoint = 1500,
+            .dynThrPID = 65,
+            .tpa_breakpoint = 1350,
             .rates_type = RATES_TYPE_BETAFLIGHT,
             .rcRates[FD_ROLL] = 100,
             .rcRates[FD_PITCH] = 100,
@@ -93,10 +93,7 @@ void pgResetFn_controlRateProfiles(controlRateConfig_t *controlRateConfig)
             .tpaFactor_D_70 = 100,
             .tpaFactor_D_80 = 90,
             .tpaFactor_D_90 = 80,
-            .tpaFactor_D_100 = 70,
-            .watt_mode_watt = 1800,
-            .watt_mode_maxAmp = 135,
-            .watt_mode_comp = 10                     
+            .tpaFactor_D_100 = 70
         );
     }
 }

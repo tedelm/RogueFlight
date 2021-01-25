@@ -720,7 +720,7 @@ static bool osdDisplayStat(int statistic, uint8_t displayRow)
             osdDisplayStatisticLabel(displayRow, "USED MAH", buff);
             return true;
         }
-        break;        
+        break;
 
 #ifdef USE_BLACKBOX
     case OSD_STAT_BLACKBOX:

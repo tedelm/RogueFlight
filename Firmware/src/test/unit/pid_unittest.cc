@@ -99,9 +99,9 @@ int loopIter = 0;
 void setDefaultTestSettings(void) {
     pgResetAll();
     pidProfile = pidProfilesMutable(1);
-    pidProfile->pid[PID_ROLL]  =  { 45, 45, 30, 65 };
-    pidProfile->pid[PID_PITCH] =  { 45, 45, 35, 60 };
-    pidProfile->pid[PID_YAW]   =  { 90, 55, 0, 60 };
+    pidProfile->pid[PID_ROLL]  =  { 40, 40, 30, 65 };
+    pidProfile->pid[PID_PITCH] =  { 58, 50, 35, 60 };
+    pidProfile->pid[PID_YAW]   =  { 70, 45, 20, 60 };
     pidProfile->pid[PID_LEVEL] =  { 50, 50, 75, 0 };
 
     // Compensate for the upscaling done without 'use_integrated_yaw'
@@ -110,7 +110,7 @@ void setDefaultTestSettings(void) {
     pidProfile->pidSumLimit = PIDSUM_LIMIT;
     pidProfile->pidSumLimitYaw = PIDSUM_LIMIT_YAW;
     pidProfile->yaw_lowpass_hz = 0;
-    pidProfile->dterm_lowpass_hz = 225;
+    pidProfile->dterm_lowpass_hz = 100;
     pidProfile->dterm_lowpass2_hz = 0;
     pidProfile->dterm_notch_hz = 260;
     pidProfile->dterm_notch_cutoff = 160;

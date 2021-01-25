@@ -105,8 +105,7 @@ void targetConfiguration(void)
 
     pidConfigMutable()->runaway_takeoff_prevention = false;
 
-    //featureConfigSet((FEATURE_DYNAMIC_FILTER | FEATURE_AIRMODE | FEATURE_ANTI_GRAVITY) ^ FEATURE_RX_PARALLEL_PWM);
-    featureConfigSet((FEATURE_AIRMODE) ^ FEATURE_RX_PARALLEL_PWM);
+    featureConfigSet((FEATURE_DYNAMIC_FILTER | FEATURE_AIRMODE | FEATURE_ANTI_GRAVITY) ^ FEATURE_RX_PARALLEL_PWM);
 
     /* AlienWhoop PIDs tested with 6mm and 7mm motors on most frames */
     for (uint8_t pidProfileIndex = 0; pidProfileIndex < PID_PROFILE_COUNT; pidProfileIndex++) {
@@ -163,7 +162,7 @@ void targetConfiguration(void)
 
         /* Throttle PID Attenuation (TPA) */
         controlRateConfig->dynThrPID = 0; // tpa_rate off
-        controlRateConfig->tpa_breakpoint = 1600;      
+        controlRateConfig->tpa_breakpoint = 1600;
 
 	/* Force the clipping mixer at 100% seems better for brushed than default (off) and scaling)? */
         controlRateConfig->throttle_limit_type = THROTTLE_LIMIT_TYPE_CLIP;

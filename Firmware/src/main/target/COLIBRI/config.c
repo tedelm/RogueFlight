@@ -64,7 +64,7 @@ void targetConfiguration(void)
         controlRateConfig_t *controlRateConfig = controlRateProfilesMutable(rateProfileIndex);
 
         controlRateConfig->dynThrPID = 45;
-        controlRateConfig->tpa_breakpoint = 1700;      
+        controlRateConfig->tpa_breakpoint = 1700;
     }
 
     serialConfigMutable()->portConfigs[2].functionMask = FUNCTION_RX_SERIAL;

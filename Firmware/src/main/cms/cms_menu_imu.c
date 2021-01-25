@@ -228,29 +228,6 @@ static CMS_Menu cmsx_menuPid = {
 };
 
 
-// RogueFlight TPA MENU
-static const OSD_Entry cmsx_menuPidTPAEntries[] =
-{
-    { "-- PID TPA --", OME_Label, NULL, NULL, 0},
-
-    {"TPA P",   OME_Submenu, cmsMenuChange,                 &cmsx_menuTPAPEntries,                                                 0},
-    {"TPA I",   OME_Submenu, cmsMenuChange,                 &cmsx_menuTPAIEntries,                                                 0},
-    {"TPA D",   OME_Submenu, cmsMenuChange,                 &cmsx_menuTPADEntries,                                                 0},
-
-    { "BACK", OME_Back, NULL, NULL, 0 },
-    { NULL, OME_END, NULL, NULL, 0 }
-};
-
-static CMS_Menu cmsx_menuPidTPA = {
-#ifdef CMS_MENU_DEBUG
-    .GUARD_text = "XPIDTPA",
-    .GUARD_type = OME_MENU,
-#endif
-    .onEnter = cmsx_menuImu_onEnter,
-    .onExit = cmsx_menuImu_onExit,
-    .onDisplayUpdate = NULL,
-    .entries = cmsx_menuPidTPAEntries
-};
 
 //
 // Rate & Expo
@@ -282,6 +259,127 @@ static const void *cmsx_RateProfileOnEnter(displayPort_t *pDisp)
 
     return NULL;
 }
+
+
+
+// RogueFlight TPA P
+static const OSD_Entry cmsx_menuTPAPEntries[] =
+{
+    { "-- TPA (P) --", OME_Label, NULL, NULL, 0},
+
+    { "P - 100",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_P_100,     10, 1000, 1 }, 0 },
+    { "P - 90",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_P_90,     10, 1000, 1 }, 0 },
+    { "P - 80",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_P_80,     10, 1000, 1 }, 0 },
+    { "P - 70",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_P_70,     10, 1000, 1 }, 0 },
+    { "P - 60",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_P_60,     10, 1000, 1 }, 0 },
+    { "P - 50",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_P_50,     10, 1000, 1 }, 0 },
+    { "P - 40",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_P_40,     10, 1000, 1 }, 0 },
+    { "P - 30",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_P_30,     10, 1000, 1 }, 0 },
+    { "P - 20",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_P_20,     10, 1000, 1 }, 0 },
+    { "P - 10",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_P_10,     10, 1000, 1 }, 0 },
+    { "BACK", OME_Back, NULL, NULL, 0 },
+    { NULL, OME_END, NULL, NULL, 0 }
+};
+
+CMS_Menu cmsx_menuTPAP = {
+#ifdef CMS_MENU_DEBUG
+    .GUARD_text = "XTPAP",
+    .GUARD_type = OME_MENU,
+#endif
+
+    .onEnter = cmsx_RateProfileOnEnter,
+    .onExit = cmsx_RateProfileWriteback,
+    .onDisplayUpdate = NULL,
+    .entries = cmsx_menuTPAPEntries,
+};
+
+// RogueFlight TPA I
+static const OSD_Entry cmsx_menuTPAIEntries[] =
+{
+    { "-- TPA (I) --", OME_Label, NULL, NULL, 0},
+
+    { "I - 100",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_I_100,     10, 1000, 1 }, 0 },
+    { "I - 90",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_I_90,     10, 1000, 1 }, 0 },
+    { "I - 80",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_I_80,     10, 1000, 1 }, 0 },
+    { "I - 70",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_I_70,     10, 1000, 1 }, 0 },
+    { "I - 60",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_I_60,     10, 1000, 1 }, 0 },
+    { "I - 50",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_I_50,     10, 1000, 1 }, 0 },
+    { "I - 40",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_I_40,     10, 1000, 1 }, 0 },
+    { "I - 30",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_I_30,     10, 1000, 1 }, 0 },
+    { "I - 20",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_I_20,     10, 1000, 1 }, 0 },
+    { "I - 10",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_I_10,     10, 1000, 1 }, 0 },
+    { "BACK", OME_Back, NULL, NULL, 0 },
+    { NULL, OME_END, NULL, NULL, 0 }
+};
+
+CMS_Menu cmsx_menuTPAI = {
+#ifdef CMS_MENU_DEBUG
+    .GUARD_text = "XTPAI",
+    .GUARD_type = OME_MENU,
+#endif
+
+    .onEnter = cmsx_RateProfileOnEnter,
+    .onExit = cmsx_RateProfileWriteback,
+    .onDisplayUpdate = NULL,
+    .entries = cmsx_menuTPAIEntries,
+};
+
+// RogueFlight TPA D
+static const OSD_Entry cmsx_menuTPADEntries[] =
+{
+    { "-- TPA (D) --", OME_Label, NULL, NULL, 0},
+
+    { "D - 100",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_D_100,     10, 1000, 1 }, 0 },
+    { "D - 90",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_D_90,     10, 1000, 1 }, 0 },
+    { "D - 80",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_D_80,     10, 1000, 1 }, 0 },
+    { "D - 70",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_D_70,     10, 1000, 1 }, 0 },
+    { "D - 60",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_D_60,     10, 1000, 1 }, 0 },
+    { "D - 50",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_D_50,     10, 1000, 1 }, 0 },
+    { "D - 40",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_D_40,     10, 1000, 1 }, 0 },
+    { "D - 30",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_D_30,     10, 1000, 1 }, 0 },
+    { "D - 20",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_D_20,     10, 1000, 1 }, 0 },
+    { "D - 10",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_D_10,     10, 1000, 1 }, 0 },
+    { "BACK", OME_Back, NULL, NULL, 0 },
+    { NULL, OME_END, NULL, NULL, 0 }
+};
+
+CMS_Menu cmsx_menuTPAD = {
+#ifdef CMS_MENU_DEBUG
+    .GUARD_text = "XTPAD",
+    .GUARD_type = OME_MENU,
+#endif
+
+    .onEnter = cmsx_RateProfileOnEnter,
+    .onExit = cmsx_RateProfileWriteback,
+    .onDisplayUpdate = NULL,
+    .entries = cmsx_menuTPADEntries,
+};
+
+// RogueFlight TPA MENU
+static const OSD_Entry cmsx_menuPidTPAEntries[] =
+{
+    { "-- PID TPA --", OME_Label, NULL, NULL, 0},
+
+    {"TPA P",   OME_Submenu, cmsMenuChange,                 &cmsx_menuTPAP,                                                 0},
+    {"TPA I",   OME_Submenu, cmsMenuChange,                 &cmsx_menuTPAI,                                                 0},
+    {"TPA D",   OME_Submenu, cmsMenuChange,                 &cmsx_menuTPAD,                                                 0},
+
+    { "BACK", OME_Back, NULL, NULL, 0 },
+    { NULL, OME_END, NULL, NULL, 0 }
+};
+
+static CMS_Menu cmsx_menuPidTPA = {
+#ifdef CMS_MENU_DEBUG
+    .GUARD_text = "XPIDTPA",
+    .GUARD_type = OME_MENU,
+#endif
+    .onEnter = cmsx_menuImu_onEnter,
+    .onExit = cmsx_menuImu_onExit,
+    .onDisplayUpdate = NULL,
+    .entries = cmsx_menuPidTPAEntries
+};
+
+
 
 static const OSD_Entry cmsx_menuRateProfileEntries[] =
 {
@@ -858,98 +956,6 @@ CMS_Menu cmsx_menuWATTMODE = {
     .entries = cmsx_menuWATTMODEEntries,
 };
 
-// RogueFlight TPA P
-static const OSD_Entry cmsx_menuTPAPEntries[] =
-{
-    { "-- TPA (P) --", OME_Label, NULL, NULL, 0},
-
-    { "P - 100",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_P_100,     10, 1000, 1 }, 0 },
-    { "P - 90",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_P_90,     10, 1000, 1 }, 0 },
-    { "P - 80",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_P_80,     10, 1000, 1 }, 0 },
-    { "P - 70",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_P_70,     10, 1000, 1 }, 0 },
-    { "P - 60",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_P_60,     10, 1000, 1 }, 0 },
-    { "P - 50",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_P_50,     10, 1000, 1 }, 0 },
-    { "P - 40",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_P_40,     10, 1000, 1 }, 0 },
-    { "P - 30",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_P_30,     10, 1000, 1 }, 0 },
-    { "P - 20",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_P_20,     10, 1000, 1 }, 0 },
-    { "P - 10",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_P_10,     10, 1000, 1 }, 0 },
-    { "BACK", OME_Back, NULL, NULL, 0 },
-    { NULL, OME_END, NULL, NULL, 0 }
-};
-
-CMS_Menu cmsx_menuTPAP = {
-#ifdef CMS_MENU_DEBUG
-    .GUARD_text = "XTPAP",
-    .GUARD_type = OME_MENU,
-#endif
-
-    .onEnter = cmsx_RateProfileOnEnter,
-    .onExit = cmsx_RateProfileWriteback,
-    .onDisplayUpdate = NULL,
-    .entries = cmsx_menuTPAPEntries,
-};
-
-// RogueFlight TPA I
-static const OSD_Entry cmsx_menuTPAIEntries[] =
-{
-    { "-- TPA (I) --", OME_Label, NULL, NULL, 0},
-
-    { "I - 100",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_I_100,     10, 1000, 1 }, 0 },
-    { "I - 90",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_I_90,     10, 1000, 1 }, 0 },
-    { "I - 80",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_I_80,     10, 1000, 1 }, 0 },
-    { "I - 70",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_I_70,     10, 1000, 1 }, 0 },
-    { "I - 60",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_I_60,     10, 1000, 1 }, 0 },
-    { "I - 50",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_I_50,     10, 1000, 1 }, 0 },
-    { "I - 40",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_I_40,     10, 1000, 1 }, 0 },
-    { "I - 30",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_I_30,     10, 1000, 1 }, 0 },
-    { "I - 20",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_I_20,     10, 1000, 1 }, 0 },
-    { "I - 10",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_I_10,     10, 1000, 1 }, 0 },
-    { "BACK", OME_Back, NULL, NULL, 0 },
-    { NULL, OME_END, NULL, NULL, 0 }
-};
-
-CMS_Menu cmsx_menuTPAI = {
-#ifdef CMS_MENU_DEBUG
-    .GUARD_text = "XTPAI",
-    .GUARD_type = OME_MENU,
-#endif
-
-    .onEnter = cmsx_RateProfileOnEnter,
-    .onExit = cmsx_RateProfileWriteback,
-    .onDisplayUpdate = NULL,
-    .entries = cmsx_menuTPAIEntries,
-};
-
-// RogueFlight TPA D
-static const OSD_Entry cmsx_menuTPADEntries[] =
-{
-    { "-- TPA (D) --", OME_Label, NULL, NULL, 0},
-
-    { "D - 100",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_D_100,     10, 1000, 1 }, 0 },
-    { "D - 90",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_D_90,     10, 1000, 1 }, 0 },
-    { "D - 80",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_D_80,     10, 1000, 1 }, 0 },
-    { "D - 70",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_D_70,     10, 1000, 1 }, 0 },
-    { "D - 60",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_D_60,     10, 1000, 1 }, 0 },
-    { "D - 50",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_D_50,     10, 1000, 1 }, 0 },
-    { "D - 40",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_D_40,     10, 1000, 1 }, 0 },
-    { "D - 30",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_D_30,     10, 1000, 1 }, 0 },
-    { "D - 20",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_D_20,     10, 1000, 1 }, 0 },
-    { "D - 10",  OME_UINT16, NULL, &(OSD_UINT16_t){ &rateProfile.tpaFactor_D_10,     10, 1000, 1 }, 0 },
-    { "BACK", OME_Back, NULL, NULL, 0 },
-    { NULL, OME_END, NULL, NULL, 0 }
-};
-
-CMS_Menu cmsx_menuTPAD = {
-#ifdef CMS_MENU_DEBUG
-    .GUARD_text = "XTPAD",
-    .GUARD_type = OME_MENU,
-#endif
-
-    .onEnter = cmsx_RateProfileOnEnter,
-    .onExit = cmsx_RateProfileWriteback,
-    .onDisplayUpdate = NULL,
-    .entries = cmsx_menuTPADEntries,
-};
 
 
 static const OSD_Entry cmsx_menuCopyProfileEntries[] =

@@ -40,6 +40,18 @@ set d_min_advance = 200
 - [Firmware](https://github.com/tedelm/RogueFlight/tree/main/Releases)
 
 
+## RogueFlight_10.4.101
+
+- Changed WATTMODE to calculate in a different way.
+    - Recommended way to use WATTMODE is to add it as a feature
+
+
+```
+SET watt_mode_watt = 1800
+SET watt_mode_maxAmp = 135
+SET watt_mode_comp = 10
+```
+
 ## RogueFlight 10.3.101
 
 - New versioning

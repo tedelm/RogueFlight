@@ -953,39 +953,30 @@ FAST_CODE_NOINLINE void mixTable(timeUs_t currentTimeUs, uint8_t vbatPidCompensa
 
         float watt_mode_throttleLimitFactor;
         float watt_mode_watt_LastUsage;
-        const float watt_mode_maxRC = 2000;
         const float watt_mode_watt = currentControlRateProfile->watt_mode_watt;
         const float watt_mode_comp = currentControlRateProfile->watt_mode_comp;
         const float watt_mode_maxAmp = currentControlRateProfile->watt_mode_maxAmp;
-
-        //const float watt_mode_watt = 400;
-        //const float watt_mode_comp = 10;
-        //const float watt_mode_maxAmp = 70;
-
         const float LipoVolt = getBatteryVoltage();
         const float currentLipoAmperage = getAmperageLatest();
-        //Unfiltered: const float LipoVolt = getBatteryVoltageLatest();
         const float watt_mode_watt_usage = LipoVolt * currentLipoAmperage;
-        const float watt_mode_maxAvailableWatt = watt_mode_maxAmp * LipoVolt;
+        const float watt_mode_maxAvailableWatt = watt_mode_maxAmp * LipoVolt;      
 
-        //3400 / 2000 = 1.7
-        const float watt_mode_dynamiclimiter = watt_mode_maxAvailableWatt / watt_mode_maxRC;
-        //1800 / 2000 = 0.9
-        const float watt_mode_staticlimiter = watt_mode_watt / watt_mode_maxRC;
 
-            //If Watt Usage greater than
+            //If Watt Usage greater than limit
             if (watt_mode_watt_usage > watt_mode_watt) {
-                //(1.0 - ((1.7 * 0.9) - 1,=0.53) = 0.47
-                watt_mode_throttleLimitFactor = 1.0f - ((watt_mode_dynamiclimiter * watt_mode_staticlimiter) - 1.0f);
+                //(1800 MaxWatt / (3400 DroneMaxWatt / 100)) / 100 = 0.529 (52.9%) throttle is max
+                watt_mode_throttleLimitFactor = (watt_mode_watt / (watt_mode_maxAvailableWatt / 100)) / 100;
 
+                //If current Watt usage ist greater than last watt usage
                 if(watt_mode_watt_usage > watt_mode_watt_LastUsage){
-                    watt_mode_throttleLimitFactor += watt_mode_comp / 100.0f;
+                    //substract 0.529 - (10/1000) = 0.519 (51.9%) max throttle
+                    watt_mode_throttleLimitFactor = watt_mode_throttleLimitFactor - (watt_mode_comp / 1000.0f);
                 }
             }
         
         //Using less then allowed, zero the limitfactor
         if (watt_mode_watt_usage < watt_mode_watt) {
-            watt_mode_throttleLimitFactor = 0.0f;
+            watt_mode_throttleLimitFactor = 1.0f;
         }
 
         //Sanity check
@@ -993,7 +984,7 @@ FAST_CODE_NOINLINE void mixTable(timeUs_t currentTimeUs, uint8_t vbatPidCompensa
             watt_mode_throttleLimitFactor = 1.0f;
         }     
         
-        mixerThrottle = throttle - watt_mode_throttleLimitFactor;
+        mixerThrottle = throttle * watt_mode_throttleLimitFactor;
         watt_mode_watt_LastUsage = watt_mode_watt_usage;
 
     }

@@ -9,8 +9,8 @@
         - PID changes
 
 </br>
-If you change Rates, PIDs or Filters in Betaflight Configurator you will be required to update TPA and WATTMODE again in cli
-</br>
+If you change Rates, PIDs or Filters in Betaflight Configurator you will be required to update TPA and WATTMODE again in cli.
+</br></br></br>
 Updating PIDs should be done via OSD menu or cli:
 
 ```

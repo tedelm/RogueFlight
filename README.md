@@ -10,7 +10,7 @@
 
 
 
-PID changes requires these cli cmdlets or change in OSD
+Rate, PID or Filter changes in Betaflight Configurator requires these cli cmdlets or change in OSD
 
 ```
 set p_pitch = 45
@@ -30,6 +30,43 @@ set d_min_pitch = 250
 set d_min_yaw = 0
 set d_min_boost_gain = 370
 set d_min_advance = 200
+
+SET tpaFactor_P_10 = 100
+SET tpaFactor_P_20 = 100
+SET tpaFactor_P_30 = 100
+SET tpaFactor_P_40 = 100
+SET tpaFactor_P_50 = 100
+SET tpaFactor_P_60 = 100
+SET tpaFactor_P_70 = 100
+SET tpaFactor_P_80 = 100
+SET tpaFactor_P_90 = 100
+SET tpaFactor_P_100 = 100
+SET tpaFactor_I_10 = 100
+SET tpaFactor_I_20 = 100
+SET tpaFactor_I_30 = 100
+SET tpaFactor_I_40 = 100
+SET tpaFactor_I_50 = 100
+SET tpaFactor_I_60 = 100
+SET tpaFactor_I_70 = 100
+SET tpaFactor_I_80 = 100
+SET tpaFactor_I_90 = 100
+SET tpaFactor_I_100 = 100
+SET tpaFactor_D_10 = 100
+SET tpaFactor_D_20 = 100
+SET tpaFactor_D_30 = 100
+SET tpaFactor_D_40 = 100
+SET tpaFactor_D_50 = 100
+SET tpaFactor_D_60 = 100
+SET tpaFactor_D_70 = 100
+SET tpaFactor_D_80 = 100
+SET tpaFactor_D_90 = 100
+SET tpaFactor_D_100 = 100
+
+SET watt_mode_watt = 1800
+SET watt_mode_maxAmp = 135
+SET watt_mode_comp = 10
+
+SAVE
 
 ```
 

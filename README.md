@@ -8,10 +8,10 @@
     - Will not work for:
         - PID changes
 
-
-<h2>If you change Rates, PIDs or Filters in Betaflight Configurator you will be required to update TPA and WATTMODE again in cli</h2>
-
-<h2>Updating PIDs should be done via OSD menu or cli:</h2>
+</br>
+If you change Rates, PIDs or Filters in Betaflight Configurator you will be required to update TPA and WATTMODE again in cli
+</br>
+Updating PIDs should be done via OSD menu or cli:
 
 ```
 set p_pitch = 45
